@@ -67,3 +67,7 @@ Route::get('/documents_download/{id}','DocumentsController@download');
 Route::get('/features', function(){
     return view('features.features_list');
 })->name('/features');;
+
+Route::get('/ck_editors', function(){
+    return view('ck_editors');
+})->name('/ck_editors');
