@@ -58,8 +58,6 @@
         <ul>
           <li id="home"><a href="{{ url('/') }}">Home</a></li>
           <li id="services"><a href="{{ url('/services') }}">Services</a></li>
-          <li id="portfolio"><a href="{{ url('/portfolio') }}">Portfolio</a></li>
-          <li id="team"><a href="{{ url('/team') }}">Team</a></li>
           <li id="blog"><a href="{{ url('/blog') }}">Blog</a></li>
           <li id="category"><a href="{{ url('/categories') }}">Categories</a></li>
           <li id="project"><a href="{{ url('/projects') }}">Project</a></li>
@@ -83,32 +81,34 @@
           <li><a href="{{ url('/contact') }}">Contact Us</a></li>
           @guest
           <li class="nav-item" id="login">
-            <a class="nav-link" href="">{{ __('Login') }}</a>
+            <a class="nav-link" href="{{ url('/login') }}">{{ __('Login') }}</a>
           </li>
           @if (Route::has('register'))
           <li class="nav-item" id="register">
-            <a class="nav-link" href="">{{ __('Register') }}</a>
+            <a class="nav-link" href="{{ url('/register') }}">{{ __('Register') }}</a>
           </li>
           @endif
+
           @else
-          <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" v-pre>
-              {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                    </a>
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="" onclick="event.preventDefault();
-                                                       document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-              </a>
-
-              <form id="logout-form" action="" method="POST" style="display: none;">
-                @csrf
-              </form>
-            </div>
-          </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                    </form>
+                </div>
+            </li>
           @endguest
+
+
         </ul>
       </nav><!-- .nav-menu -->
 

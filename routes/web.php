@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +12,13 @@ use App\Http\Controllers\ProjectsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+//For login
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('/home');
+
 
 /*Route::get('/', function () {
     return view('akash');
@@ -25,6 +32,7 @@ Route::get('/portfolio', 'PagesController@portfolio')->name('/portfolio');
 Route::get('/team', 'PagesController@team')->name('/team');
 Route::get('/blog', 'PagesController@blog')->name('/blog');
 Route::get('/contact', 'PagesController@contact')->name('/contact');
+
 
 //Projects er Routes
 Route::get('/projects', 'ProjectsController@index');
@@ -47,9 +55,10 @@ Route::post('/categories.update.{id}', 'CategoriesController@update');
 Route::get('/categories.delete.{id}','CategoriesController@destroy');
 
 
+
+Route::get('/documents','DocumentsController@index');
 Route::get('/documents_create','DocumentsController@create');
 Route::post('/documents','DocumentsController@store');
-Route::get('/documents','DocumentsController@index');
 Route::get('/documents_show/{id}','DocumentsController@show');
 Route::get('/documents_download/{id}','DocumentsController@download');
 

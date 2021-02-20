@@ -32,7 +32,7 @@
                     <td>{{ $row->id }}</td>
                     <td>{{ $row->project_name }}</td>
                     <td>User Id Bosabo</td>
-                    <td>{{ $row->category_id }}</td>
+                    <td>{{ $row->category->category_name }}</td>
                     <td>{{ $row->project_description }}</td>
                     <td><img src="{{ URL::to($row->image) }}" style="height: 40px; width: 70px"></td>
 

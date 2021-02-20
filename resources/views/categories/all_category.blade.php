@@ -13,8 +13,8 @@
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <p>
-            <a href="{{url('/categories.create')}}" class="btn btn-danger">Add Project</a>
-            <a href="{{url('/categories')}}" class="btn btn-info">All Projects</a>
+            <a href="{{url('/categories.create')}}" class="btn btn-danger">Add Category</a>
+            <a href="{{url('/categories')}}" class="btn btn-info">All Categories</a>
           </p>
 
             <table class="table table-responsive">

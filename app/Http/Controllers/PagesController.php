@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
+use App\User;
+use App\Models\Category;
+use App\Models\Project;
+use App\Models\Document;
+
 class PagesController extends Controller
 {
     public function index()
@@ -44,5 +49,5 @@ class PagesController extends Controller
     }
 
 
-    
+
 }
