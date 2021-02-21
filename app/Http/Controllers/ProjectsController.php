@@ -23,7 +23,8 @@ class ProjectsController extends Controller
 
     public function create()
     {
-        return view('projects.create_project');
+        $category=Category::all();
+        return view('projects.create_project',compact('category'));
     }
 
 
@@ -31,7 +32,8 @@ class ProjectsController extends Controller
     {
         $data=new Project;
         $data->project_name=$request->project_name;
-        $data->category_id=1;
+        $data->user_id=auth()->user()->id;
+        $data->category_id=$request->category_id;
         $data->project_description=$request->project_description;
 
         $image =$request->file('image');
@@ -67,15 +69,18 @@ class ProjectsController extends Controller
     public function edit($id)
     {
         $project=Project::findorfail($id);
-        return view('projects.edit_project',compact('project'));
+        $category=Category::all();
+
+        return view('projects.edit_project',compact('project','category'));
     }
 
 
     public function update(Request $request, $id)
     {
-        $data=Project::findorfail($id);;
+        $data=Project::findorfail($id);
+        $data->user_id=auth()->user()->id;
         $data->project_name=$request->project_name;
-        $data->category_id=1;
+        $data->category_id=$request->category_id;
         $data->project_description=$request->project_description;
 
         $image =$request->image;

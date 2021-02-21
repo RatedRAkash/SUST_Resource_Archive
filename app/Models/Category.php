@@ -14,4 +14,10 @@ class Category extends Model
     {
         return $this->hasOne(Project::class);
     }
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

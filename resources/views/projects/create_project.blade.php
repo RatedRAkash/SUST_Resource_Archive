@@ -15,12 +15,12 @@
                 <a href="{{url('/projects.create')}}" class="btn btn-danger">Add Project</a>
                 <a href="{{url('/projects')}}" class="btn btn-info">All Projects</a>
             </p>
-          
+
           <hr>
 
           <form action="{{url('/projects.store')}}" method="post" enctype="multipart/form-data">
           @csrf
-            
+
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Project Name</label>
@@ -33,12 +33,16 @@
               <div class="form-group floating-label-form-group controls">
                 <label>Category</label>
                 <select class="form-control" name="category_id">
-                  <option>Machine Learning</option>
-                </select>
+                @foreach ($category as $row)
+                    <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                @endforeach
+            </select>
               </div>
             </div>
 
-            
+
+
+
 
             <div class="control-group">
               <div class="form-group col-xs-12 floating-label-form-group controls">
