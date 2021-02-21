@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,3 +72,27 @@ Route::get('/features', function(){
 Route::get('/ck_editors', function(){
     return view('ck_editors');
 })->name('/ck_editors');
+
+Route::get('/upload', function(){
+    return view('upload_page');
+})->name('/upload');
+
+Route::post('/upload_file', function(Request $request){
+    try {
+        $file = $request->file('file'); 
+        Storage::disk('google')->put($file->getClientOriginalName().'', fopen($file, 'r+'));
+        $url = Storage::disk('google')->url($file->getClientOriginalName().'');
+        return $url;
+      } catch (Exception $e) {
+        dd($e);
+      }
+})->name('/upload_file');
+
+Route::get('/list', function() {
+    $dir = '/';
+    $recursive = false; // Get subdirectories also?
+    $contents = collect(Storage::disk('google')->listContents($dir, $recursive));
+
+    //return $contents->where('type', '=', 'dir'); // directories
+    return $contents->where('type', '=', 'file'); // files
+});
