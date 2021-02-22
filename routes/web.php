@@ -65,6 +65,12 @@ Route::get('/documents_download/{id}','DocumentsController@download');
 
 
 
+Route::get('/upload', 'PagesController@google_drive_upload');
+
+Route::post('/upload_file_view', 'PagesController@google_drive_view');
+
+
+
 Route::get('/features', function(){
     return view('features.features_list');
 })->name('/features');;
@@ -73,20 +79,10 @@ Route::get('/ck_editors', function(){
     return view('ck_editors');
 })->name('/ck_editors');
 
-Route::get('/upload', function(){
-    return view('upload_page');
-})->name('/upload');
 
-Route::post('/upload_file', function(Request $request){
-    try {
-        $file = $request->file('file'); 
-        Storage::disk('google')->put($file->getClientOriginalName().'', fopen($file, 'r+'));
-        $url = Storage::disk('google')->url($file->getClientOriginalName().'');
-        return $url;
-      } catch (Exception $e) {
-        dd($e);
-      }
-})->name('/upload_file');
+
+Route::get('/akash', 'PagesController@akash')->name('/akash');
+
 
 Route::get('/list', function() {
     $dir = '/';

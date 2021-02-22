@@ -2,13 +2,18 @@
 
 @section('content')
 
-<br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="container">
     <div class="row justify-content-center">
         <h1 class="title">Upload a file</h1>
     </div>
 
-    <form id="upload_file" class="" action="/upload_file" method="post" enctype="multipart/form-data">
+    <form id="upload_file" class="" action="{{ url('/upload_file_view') }}" method="post" enctype="multipart/form-data">
         @csrf
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -36,7 +41,12 @@
     </form>
     <br><br><br>
 </div>
-<br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 @endsection
