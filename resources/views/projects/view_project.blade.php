@@ -8,20 +8,16 @@
 <br>
 <br>
 <br>
-  <head>
+
+@push('styles')
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-    <title>Resource</title>
-  </head>
-  <body>
-
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
     <!-- Optional JavaScript; choose one of the two! -->
 
+    <link rel="stylesheet" href="assets/vendor/bootstrap/view_project_bootstrap.min.css">
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
@@ -39,9 +35,8 @@
 			  overflow-x: hidden;
 			  padding: 8px 0;
 		}
-
-
 	</style>
+@endpush
 
 	<div class="container px-4">
 		<div class="row gx-5">
@@ -303,11 +298,5 @@
     <br>
     <br>
     <br>
-  </body>
 
 @endsection
-
-
-</html>
-
-

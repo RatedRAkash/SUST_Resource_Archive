@@ -72,19 +72,10 @@
 
 					<div class="card-body">
 						<p class="card-text">
-							A product description is the marketing copy that explains what a product is and why it’s worth purchasing.
-							The purpose of a product description is to supply customers with important information about the features and benefits of the product so they’re compelled to buy.
+						{{ $project->project_description }}
+                        </p>
 
-							However, entrepreneurs and marketers alike are susceptible to a common mistake that comes up when writing product descriptions.
-							Even professional copywriters make it sometimes: writing product descriptions that simply describe your products.
-
-							Why is it wrong? Because great product descriptions need to augment your product pages by selling your products to real people,
-							not just acting as back-of-the-box dispensers of information for search engines (though search engine optimization can't be an afterthought, of course).
-
-							Let’s have a look at nine simple ways to persuade visitors to your online store with product descriptions that sell.
-						</p>
-
-                        <textarea name="content"></textarea>
+                        <textarea name="content">{{ $project->project_description }}</textarea>
                         <script src="ckeditor/ckeditor.js"></script>
                         <script>
                             CKEDITOR.replace('content');
