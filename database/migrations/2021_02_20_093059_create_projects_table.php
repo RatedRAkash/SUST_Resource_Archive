@@ -13,8 +13,13 @@ class CreateProjectsTable extends Migration
             $table->integer('user_id');
             $table->integer('category_id');
             $table->string('project_name');
-            $table->text('project_description');
+            $table->text('project_description')->nullable();
+            $table->text('project_abstract')->nullable();
+
+            $table->string('document_url')->nullable();
             $table->string('image');
+            $table->string('link_to_dataset')->nullable();
+
             $table->timestamps();
         });
     }

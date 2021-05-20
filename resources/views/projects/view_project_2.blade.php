@@ -20,7 +20,7 @@
 
               <h3>Project Name: {{ $project->project_name }}</h3>
               <p>Project Description: {{ $project->project_description }}</p>
-              
+
         </div>
       </div>
     </div>

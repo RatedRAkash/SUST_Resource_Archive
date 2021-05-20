@@ -35,6 +35,7 @@ class ProjectsController extends Controller
         $data->user_id=auth()->user()->id;
         $data->category_id=$request->category_id;
         $data->project_description=$request->project_description;
+        $data->project_abstract=$request->project_abstract;
 
         $image =$request->file('image');
 
@@ -55,7 +56,6 @@ class ProjectsController extends Controller
         //return response()->json($data);
 
         return Redirect('/projects');
-
     }
 
 
@@ -79,11 +79,14 @@ class ProjectsController extends Controller
     {
         $data=Project::findorfail($id);
         $data->user_id=auth()->user()->id;
-        $data->project_name=$request->project_name;
-        $data->category_id=$request->category_id;
-        $data->project_description=$request->project_description;
+        //$data->project_name=$request->project_name;
+        $data->project_name=$request->name('project_name');
 
-        $image =$request->image;
+        //$data->category_id=$request->category_id;
+        $data->category_id=1;
+        $data->project_description=$request->name('project_description');
+
+        $image=$request->image;
 
         if($image)
         {
@@ -96,15 +99,51 @@ class ProjectsController extends Controller
             $data->image=$image_url;
         }
 
+        try {
+
+            $file = $request->file('file');
+            $ext=strtolower($file->getClientOriginalExtension());
+
+            \Storage::disk('google')->put($file->getClientOriginalName().'', fopen($file, 'r+'));
+            $url = \Storage::disk('google')->url($file->getClientOriginalName().'');
+
+            //return $url;
+            $pos=strpos($url,"&export=media");
+
+            if($ext=="docx") {
+                $url=substr($url, 31, $pos);
+                $url=substr($url, 0, -13);
+                $url="https://docs.google.com/document/d/".$url."/edit#slide=id.p1";
+                //return $url;
+            }
+
+            else if($ext=="pptx") {
+
+                $url=substr($url, 31, $pos);
+                $url=substr($url, 0, -13);
+                $url="https://docs.google.com/presentation/d/".$url."/edit#slide=id.p1";
+
+                //$url=str_replace("/document/","/presentation/",$url);
+                //return $url;
+            }
+            //return $url;
+            //return view('upload_page_view',compact('url'));
+            $data->document_url=$url;
+
+          } catch (Exception $e) {
+            dd($e);
+        }
+
         $data->save();
 
         //return response()->json($data);
 
         if($data){
             //return Redirect()->back();
-            return Redirect('/projects');
+            return Redirect('/projects.show.'.$data->user_id);
         }
     }
+
 
 
     public function destroy($id)

@@ -2,62 +2,58 @@
 
 @section('content')
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<main id="main">
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <p>
-            <a href="{{url('/categories.create')}}" class="btn btn-danger">Add Category</a>
-            <a href="{{url('/categories')}}" class="btn btn-info">All Categories</a>
-          </p>
+    <script type="text/javascript">
+        document.getElementById('services').className = "active";
+    </script>
 
-            <table class="table table-responsive">
-                <tr>
-                    <th>ID No.</th>
-                    <th>Category Name</th>
-                    <th>Created User Name</th>
-                    <th>Category Description</th>
-                </tr>
+    <!-- ======= Our Services Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
 
-                @foreach ($categories as $row)
-                <tr>
-                    <td>{{ $row->id }}</td>
-                    <td>{{ $row->category_name }}</td>
-                    <td>User Name Dibo</td>
-                    <td>{{ $row->category_description }}</td>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Categories</h2>
+                <ol>
+                    @if(!Auth::guest())
+                    <a href="{{url('/categories.create')}}" class="btn btn-success">Add Category</a>
+                    @endif
+                </ol>
 
-                    <td><img src="" style="height: 40px; width: 70px"></td>
+            </div>
 
-                    <td>
 
-                      @if(!Auth::guest())
-                        @if(Auth::user()->id==$row->user_id)
-                          <a href="{{url('categories/'.$row->id.'/edit')}}" class="btn btn-sm btn-info">Edit</a>
+        </div>
+    </section><!-- End Our Categories Section -->
 
-                          <form action="{{url('categories/'.$row->id)}}" method="post">
-                              @csrf
-                              @method('DELETE')
-                              <button class="btn btn-danger" style="submit">Delete</button>
-                          </form>
-                        @endif
-                      @endif
+    <!-- ======= Service Details Section ======= -->
+    <section class="service-details">
 
-                      <a href="{{url('categories.show.'.$row->id)}}" class="btn btn-sm btn-success">View</a> <!-- eikane "URL to" er por '.' dewa mane concatenation bujai-->
-                      <a href="{{url('categories.delete.'.$row->id)}}" class="btn btn-sm btn-danger">Delete</a>
+        <div class="container">
 
-                  </td>
-                </tr>
-                @endforeach
-            </table>
+            <div class="row">
 
-      </div>
-    </div>
-  </div>
+
+            @foreach ($categories as $row)
+
+            <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="{{ URL::to($row->image) }}" alt="...">
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{url('categories.show.'.$row->id)}}">{{ $row->category_name }}</a></h5>
+                        <p class="card-text">{{ $row->category_description }}</p>
+                    <div class="read-more"><a href="{{url('categories.show.'.$row->id)}}"><i class="icofont-arrow-right"></i> Read More</a></div>
+                </div>
+
+            </div>
+
+            @endforeach
+
+        </div>
+    </section><!-- End Service Details Section -->
 
 @endsection

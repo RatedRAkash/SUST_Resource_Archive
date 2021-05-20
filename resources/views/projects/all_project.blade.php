@@ -16,8 +16,9 @@
                 <h2>All Projects</h2>
 
                 <ol>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Projects</li>
+                    @if(!Auth::guest())
+                    <a href="{{url('/projects.create')}}" class="btn btn-success">Create Project</a>
+                    @endif
                 </ol>
             </div>
         </div>

@@ -33,6 +33,8 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="assets/vendor/bootstrap/view_project_bootstrap.min.css">
+
   <!-- =======================================================
   * Template Name: Moderna - v2.0.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -119,6 +121,7 @@
   @yield('content')
   <!-- End Content -->
 
+  @stack('styles')
 
 
   <!-- ======= Footer ======= -->

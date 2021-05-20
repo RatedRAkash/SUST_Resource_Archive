@@ -30,9 +30,23 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $data=new Category;
+        $data->user_id=auth()->user()->id;
         $data->id=$request->id;
         $data->category_name=$request->category_name;
         $data->category_description=$request->category_description;
+
+        $image =$request->file('image');
+
+        if($image)
+        {
+            $image_name=hexdec(uniqid());
+            $ext=strtolower($image->getClientOriginalExtension());
+            $image_full_name=$image_name.'.'.$ext;
+            $upload_path='images/category_image/';
+            $image_url=$upload_path.$image_full_name;
+            $success=$image->move($upload_path,$image_full_name);
+            $data->image=$image_url;
+        }
 
         $data->save();
 
@@ -61,6 +75,7 @@ class CategoriesController extends Controller
         $data=Category::findorfail($id);
 
         $data->id=$request->id;
+        $data->user_id=auth()->user()->id;
         $data->category_name=$request->category_name;
         $data->category_description=$request->category_description;
 

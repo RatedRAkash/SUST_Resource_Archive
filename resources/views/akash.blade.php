@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Documents</title>
-</head>
-
+<style>
+#div-to-be-changed{
+    height: 100px;
+    width: 100%;
+    border: 3px solid red;
+}
+</style>
 <body>
 
-    <div>
-        <h1>View DocX,Pdf,PPTX</h1><br>
-        <!-- <iframe src="https://drive.google.com/uc?id=1T7tdTf5ytoViKBBJNsQV7xpcQGgmmKWx&export=media" style="width:600px; height:500px"></iframe> -->
+    <div id="div-to-be-changed"></div>
 
-        <iframe src="{{ $url }}" style="width:600px; height:500px"></iframe>
+    <input id="written-text" placeholder="Type something">
 
-
-        <!-- <iframe src="https://docs.google.com/presentation/d/1m6e3Ri0_1_nqeBsMMiZeCck0HvKbfwQHJ2geI_Te9ng/edit#slide=id.p" style="width:600px; height:500px"></iframe> -->
-    </div>
-
+    <script>
+            function changeText()
+            {
+                document.getElementById("div-to-be-changed").textContent = document.getElementById("written-text").value;
+            }
+    </script>
+    <button onclick="changeText()">Change Text</button>
 </body>
 </html>

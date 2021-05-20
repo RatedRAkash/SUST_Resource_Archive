@@ -8,20 +8,16 @@
 <br>
 <br>
 <br>
-  <head>
+
+@push('styles')
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-    <title>Resource</title>
-  </head>
-  <body>
-
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
     <!-- Optional JavaScript; choose one of the two! -->
 
+    <link rel="stylesheet" href="assets/vendor/bootstrap/view_project_bootstrap.min.css">
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
@@ -39,9 +35,8 @@
 			  overflow-x: hidden;
 			  padding: 8px 0;
 		}
-
-
 	</style>
+@endpush
 
 	<div class="container px-4">
 		<div class="row gx-5">
@@ -72,16 +67,7 @@
 
 					<div class="card-body">
 						<p class="card-text">
-							A product description is the marketing copy that explains what a product is and why it’s worth purchasing.
-							The purpose of a product description is to supply customers with important information about the features and benefits of the product so they’re compelled to buy.
-
-							However, entrepreneurs and marketers alike are susceptible to a common mistake that comes up when writing product descriptions.
-							Even professional copywriters make it sometimes: writing product descriptions that simply describe your products.
-
-							Why is it wrong? Because great product descriptions need to augment your product pages by selling your products to real people,
-							not just acting as back-of-the-box dispensers of information for search engines (though search engine optimization can't be an afterthought, of course).
-
-							Let’s have a look at nine simple ways to persuade visitors to your online store with product descriptions that sell.
+                        {{ $project->project_abstract }}
 						</p>
 					</div>
 
@@ -168,18 +154,21 @@
 
 					<div class="card-body">
 						<p class="card-text">
-							This is the part 3 of the resourse.
+                        <iframe src="{{ $project->document_url }}" style="width:600px; height:500px"></iframe>
+							Presentation Slide
 						</p>
 					</div>
 
 					<div class="card-footer">
 						<b>Resources:</b>
 						<br>
+
 						<div class="card text-white bg-dark mb-3">
 							<div class="row">
 								<div class="col col-sm-11">
-									<img src="program_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Code1.cpp &nbsp;(<i>Program File</i>)
+
+                                <img src="presentation_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
+									Presentation1.ppt &nbsp;(<i>Presentation File</i>)
 								</div>
 								<div class="col">
 
@@ -236,28 +225,33 @@
 						<div class="card text-white bg-dark mb-3">
 							<div class="row">
 								<div class="col col-sm-11">
-									<img src="presentation_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Presentation1.ppt &nbsp;(<i>Presentation File</i>)
+                                    <img src="program_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
+									Code1.cpp &nbsp;(<i>Program File</i>)
 								</div>
 								<div class="col">
 
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
 										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
 									</svg>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				</diV>
+								    </div>
+							    </div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
 			</div>
+
 
 			<div class="position-fixed top-22 end-0 w-25">
 				<div class="container">
 					<div class="card text-dark bg-light mb-3 ">
 					  <div class="card-body">
 
-                        <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
+                      @if(!Auth::guest())
+                        @if(Auth::user()->id==$project->user_id)
+                            <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
+                        @endif
+                      @endif
                         <br>
                         <br>
 
@@ -296,6 +290,7 @@
 			</div>
 
 		</div>
+
 	</div>
 
     <br>
@@ -303,11 +298,5 @@
     <br>
     <br>
     <br>
-  </body>
 
 @endsection
-
-
-</html>
-
-

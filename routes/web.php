@@ -66,13 +66,12 @@ Route::get('/documents_download/{id}','DocumentsController@download');
 
 
 Route::get('/upload', 'PagesController@google_drive_upload');
-
 Route::post('/upload_file_view', 'PagesController@google_drive_view');
 
 
 
 Route::get('/features', function(){
-    return view('features.features_list');
+    return view('features.create_resource');
 })->name('/features');;
 
 Route::get('/ck_editors', function(){
