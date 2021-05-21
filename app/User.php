@@ -26,8 +26,6 @@ class User extends Authenticatable
     ];
 
 
-
-
     public function category()
     {
         return $this->hasMany('App\Models\Category');
@@ -36,6 +34,11 @@ class User extends Authenticatable
     public function project()
     {
         return $this->hasMany('App\Models\Project');
+    }
+
+    public function commentsection()
+    {
+        return $this->hasMany('App\Models\CommentSection');
     }
 
 }

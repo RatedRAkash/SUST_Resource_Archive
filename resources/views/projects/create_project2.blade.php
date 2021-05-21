@@ -63,7 +63,7 @@
             <br>
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" id="sendMessageButton">Save</button>
+              <button type="submit" class="btn btn-primary" id="saveButton">Save</button>
             </div>
 
           </form>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectAccess extends Migration
+class CreateCommentSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateProjectAccess extends Migration
      */
     public function up()
     {
-        Schema::create('project_access', function (Blueprint $table) {
+        Schema::create('comment_sections', function (Blueprint $table) {
 
-            $table->integer('access_user_id');
+            $table->id();
+
             $table->integer('project_id');
+            $table->integer('user_id');
+            $table->longText('comment_text')->nullable();
 
             $table->timestamps();
         });
@@ -29,8 +32,6 @@ class CreateProjectAccess extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_access');
+        Schema::dropIfExists('comment_sections');
     }
-
-
 }

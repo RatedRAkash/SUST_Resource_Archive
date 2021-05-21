@@ -44,7 +44,8 @@
 
             <form id="upload_file" class="" action="{{url('projects.update.'.$project->id)}}" method="post" enctype="multipart/form-data">
                 @csrf  <!-- CSRF token use nah korle problem hobe -->
-				<div data-bs-spy="scroll" style="height:700px; overflow-y:scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+
+                <div data-bs-spy="scroll" style="height:700px; overflow-y:scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
 
 				<img src="{{ $project->image }}" class="rounded img-fluid" alt="No image available" style="height:350px;">
 
@@ -255,7 +256,7 @@
                             <div class="row">
                                 <div class="col col-sm-11">
                                     <img src="pdf_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-                                    PDF1.pdf &nbsp;(<i>PDF File</i>)
+                                    Description &nbsp;(<i>Description</i>)
                                 </div>
                                 <div class="col">
 
@@ -295,8 +296,8 @@
 
                         <div class="card-body" id="div_paper_pdf_url">
                             <p class="card-text">
-                            @if($project->pdf_url != null)
-                                <iframe src="{{ $project->pdf_url }}" style="width:750px; height:750px"></iframe>
+                            @if($project->paper_pdf_url != null)
+                                <iframe src="{{ $project->paper_pdf_url }}" style="width:750px; height:750px"></iframe>
                             @else
                                 <iframe src="" style="height:50px"></iframe>
                             @endif
@@ -354,7 +355,7 @@
                 <script>
                     function change_presentation_slide()
                     {
-                        document.getElementById("div_project_document_url").src = document.getElementById("file").src;
+                        document.getElementById("div_project_presentation_slide_url").src = document.getElementById("file").src;
                     }
 
                     function myFunction_presentation_slide() {
@@ -370,11 +371,11 @@
 
                 <h5 class="card-header"> Presentation Slide <small class="pull-right"><button type="button" id="edit_button_presentation" onclick="myFunction_presentation_slide(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
-					<div class="card-body" id="div_project_document_url">
+					<div class="card-body" id="div_project_presentation_slide_url">
 						<p class="card-text">
 
-                        @if($project->document_url != null)
-                            <iframe src="{{ $project->document_url }}" style="width:750px; height:750px"></iframe>
+                        @if($project->presentation_slide_url != null)
+                            <iframe src="{{ $project->presentation_slide_url }}" style="width:750px; height:750px"></iframe>
                         @else
                             <iframe src="" style="height:50px"></iframe>
                         @endif

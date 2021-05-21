@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->string('paper_pdf_url')->nullable();
             $table->string('presentation_slide_url')->nullable();
             $table->string('link_to_dataset')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
 
             $table->timestamps();
         });

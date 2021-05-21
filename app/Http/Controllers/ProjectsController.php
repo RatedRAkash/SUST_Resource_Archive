@@ -9,6 +9,7 @@ use App\User;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\Document;
+use App\Models\CommentSection;
 
 class ProjectsController extends Controller
 {
@@ -59,11 +60,31 @@ class ProjectsController extends Controller
     }
 
 
+    public function store_comment(Request $request, $id)
+    {
+        $data=new CommentSection;
+        $data->project_id=$id;
+        $data->user_id=auth()->user()->id;
+        $data->comment_text=$request->comment_text;
+
+        $data->save();
+
+
+        //return response()->json($data);
+        return Redirect('/projects.show.'.$id);
+    }
+
+
+
     public function show($id)
     {
         $project=Project::findorfail($id);
-        return view('projects.view_project',compact('project'));
+
+        $comments=CommentSection::where('project_id','=', $id)->get();
+
+        return view('projects.view_project',compact('project','comments'));
     }
+
 
 
     public function edit($id)

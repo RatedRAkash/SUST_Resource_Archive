@@ -38,7 +38,10 @@ Route::get('/contact', 'PagesController@contact')->name('/contact');
 //Projects er Routes
 Route::get('/projects', 'ProjectsController@index');
 Route::get('/projects.create', 'ProjectsController@create');
+
 Route::post('/projects.store', 'ProjectsController@store');
+Route::post('/projects.store_comment_section.{id}', 'ProjectsController@store_comment');
+
 Route::get('/projects.show.{id}','ProjectsController@show');
 Route::get('/projects.edit.{id}','ProjectsController@edit');
 Route::post('/projects.update.{id}', 'ProjectsController@update');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectRequests extends Migration
+class CreateProjectAccessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateProjectRequests extends Migration
      */
     public function up()
     {
-        Schema::create('project_requests', function (Blueprint $table) {
+        Schema::create('project_accesses', function (Blueprint $table) {
 
-            $table->integer('owner_id');
-            $table->integer('request_id');
+            $table->id();
+
+            $table->integer('access_user_id');
             $table->integer('project_id');
-            $table->integer('access');
 
             $table->timestamps();
-
-
         });
     }
 
@@ -33,6 +31,6 @@ class CreateProjectRequests extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_requests');
+        Schema::dropIfExists('project_accesses');
     }
 }
