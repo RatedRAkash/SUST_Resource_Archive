@@ -5,7 +5,7 @@
 <main id="main">
 
     <script type="text/javascript">
-        document.getElementById('blog').className = "active";
+        document.getElementById('projects').className = "active";
     </script>
 
     <!-- ======= Blog Section ======= -->
@@ -50,8 +50,7 @@
                                 <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
                                         href="blog-single.html"><time datetime="2020-01-01">{{ $row->created_at }}</time></a></li>
                                 <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a
-                                        href="blog-single.html">12
-                                        Comments</a></li>
+                                        href="blog-single.html">{{ $row->commentsection->count() }}  Comments</a></li>
                             </ul>
                         </div>
 

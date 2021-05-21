@@ -96,4 +96,13 @@ class CategoriesController extends Controller
         $category->delete();
         return Redirect('/categories');
     }
+
+
+    public function search()
+    {
+        $search_text=$_GET['query'];
+        $categories=Category::where('category_name','LIKE', '%'.$search_text.'%')->get();
+        return view('categories.all_category',compact('categories','search_text'));
+    }
+
 }

@@ -61,8 +61,8 @@
           <li id="home"><a href="{{ url('/') }}">Home</a></li>
           <li id="services"><a href="{{ url('/services') }}">Services</a></li>
           <li id="blog"><a href="{{ url('/blog') }}">Single Blog</a></li>
-          <li id="category"><a href="{{ url('/categories') }}">Categories</a></li>
-          <li id="project"><a href="{{ url('/projects') }}">Projects</a></li>
+          <li id="categories"><a href="{{ url('/categories') }}">Categories</a></li>
+          <li id="projects"><a href="{{ url('/projects') }}">Projects</a></li>
           <li class="drop-down"><a href="">Drop Down</a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>

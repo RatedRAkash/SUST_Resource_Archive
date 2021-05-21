@@ -90,9 +90,22 @@ class ProjectsController extends Controller
     public function edit($id)
     {
         $project=Project::findorfail($id);
-        $category=Category::all();
 
-        return view('projects.edit_project',compact('project','category'));
+        $current_user_id=auth()->user()->id;
+
+        if($project->user_id == $current_user_id)
+        {
+            $category=Category::all();
+
+            return view('projects.edit_project',compact('project','category'));
+        }
+
+        else
+        {
+            return view('pages.not_authorized');
+        }
+
+
     }
 
 
@@ -217,8 +230,19 @@ class ProjectsController extends Controller
     public function destroy($id)
     {
         $project=Project::findorfail($id);
-        $project->delete();
-        return Redirect('/projects');
+        $current_user_id=auth()->user()->id;
+
+        if($project->user_id == $current_user_id)
+        {
+            $project->delete();
+            return Redirect('/projects');
+        }
+
+        else
+        {
+            return view('pages.not_authorized');
+        }
+
     }
 
 

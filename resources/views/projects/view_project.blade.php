@@ -226,6 +226,10 @@
                 border:1px solid #ffffff;
             }
 
+            .textarea{
+                color: #000000;
+            }
+
             .comments-title {
                 font-size: 16px;
                 color: #262626;
@@ -328,7 +332,9 @@
             .form-group textarea.form-input {
                 height: 150px;
             }
+
         </style>
+
 
 
             <!-- COMMENT SECTION START -->
@@ -336,7 +342,7 @@
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
             <div class="container">
             <div class="be-comment-block">
-                <h1 class="comments-title">Comments {{$comments->count()}}</h1>
+                <h1 class="comments-title">Comments : {{$comments->count()}}</h1>
 
                 @foreach($comments as $comment)
                 <div class="be-comment">

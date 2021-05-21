@@ -58,7 +58,7 @@ Route::get('/categories.show.{id}','CategoriesController@show');
 Route::get('/categories.edit.{id}','CategoriesController@edit');
 Route::post('/categories.update.{id}', 'CategoriesController@update');
 Route::get('/categories.delete.{id}','CategoriesController@destroy');
-
+Route::get('/categories.search','CategoriesController@search');//SEARCH Category
 
 
 Route::get('/documents','DocumentsController@index');
