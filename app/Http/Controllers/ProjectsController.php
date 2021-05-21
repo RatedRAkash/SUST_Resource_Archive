@@ -78,16 +78,18 @@ class ProjectsController extends Controller
     public function update(Request $request, $id)
     {
         $data=Project::findorfail($id);
-        $data->user_id=auth()->user()->id;
-        //$data->project_name=$request->project_name;
-        $data->project_name=$request->name('project_name');
 
-        //$data->category_id=$request->category_id;
-        $data->category_id=1;
-        $data->project_description=$request->name('project_description');
+        $data->user_id=auth()->user()->id;
+        $data->project_name=$request->project_name;
+        //$data->project_name=$request->name('project_name');
+
+        $data->category_id=$request->category_id;
+        $data->project_description=$request->project_description;
+        $data->project_abstract=$request->project_abstract;
+
+
 
         $image=$request->image;
-
         if($image)
         {
             $image_name=hexdec(uniqid());
@@ -99,39 +101,82 @@ class ProjectsController extends Controller
             $data->image=$image_url;
         }
 
-        try {
 
-            $file = $request->file('file');
-            $ext=strtolower($file->getClientOriginalExtension());
+        $file = $request->file('pdf_file');
+        if($file)
+        {
+            try {
+                //$file = $request->file('presentation_file');
+                $ext=strtolower($file->getClientOriginalExtension());
 
-            \Storage::disk('google')->put($file->getClientOriginalName().'', fopen($file, 'r+'));
-            $url = \Storage::disk('google')->url($file->getClientOriginalName().'');
+                \Storage::disk('google')->put($file->getClientOriginalName().'', fopen($file, 'r+'));
+                $url = \Storage::disk('google')->url($file->getClientOriginalName().'');
 
-            //return $url;
-            $pos=strpos($url,"&export=media");
-
-            if($ext=="docx") {
-                $url=substr($url, 31, $pos);
-                $url=substr($url, 0, -13);
-                $url="https://docs.google.com/document/d/".$url."/edit#slide=id.p1";
                 //return $url;
-            }
+                $pos=strpos($url,"&export=media");
 
-            else if($ext=="pptx") {
+                if($ext=="docx") {
+                    $url=substr($url, 31, $pos);
+                    $url=substr($url, 0, -13);
+                    $url="https://docs.google.com/document/d/".$url."/edit#slide=id.p1";
+                    //return $url;
+                }
 
-                $url=substr($url, 31, $pos);
-                $url=substr($url, 0, -13);
-                $url="https://docs.google.com/presentation/d/".$url."/edit#slide=id.p1";
+                else if($ext=="pptx") {
 
-                //$url=str_replace("/document/","/presentation/",$url);
+                    $url=substr($url, 31, $pos);
+                    $url=substr($url, 0, -13);
+                    $url="https://docs.google.com/presentation/d/".$url."/edit#slide=id.p1";
+
+                    //$url=str_replace("/document/","/presentation/",$url);
+                    //return $url;
+                }
                 //return $url;
-            }
-            //return $url;
-            //return view('upload_page_view',compact('url'));
-            $data->document_url=$url;
+                //return view('upload_page_view',compact('url'));
+                $data->presentation_slide_url=$url;
 
-          } catch (Exception $e) {
-            dd($e);
+            } catch (Exception $e) {
+                $data->presentation_slide_url=NULL;
+            }
+        }
+
+
+        $file = $request->file('presentation_file');
+        if($file)
+        {
+            try {
+                //$file = $request->file('presentation_file');
+                $ext=strtolower($file->getClientOriginalExtension());
+
+                \Storage::disk('google')->put($file->getClientOriginalName().'', fopen($file, 'r+'));
+                $url = \Storage::disk('google')->url($file->getClientOriginalName().'');
+
+                //return $url;
+                $pos=strpos($url,"&export=media");
+
+                if($ext=="docx") {
+                    $url=substr($url, 31, $pos);
+                    $url=substr($url, 0, -13);
+                    $url="https://docs.google.com/document/d/".$url."/edit#slide=id.p1";
+                    //return $url;
+                }
+
+                else if($ext=="pptx") {
+
+                    $url=substr($url, 31, $pos);
+                    $url=substr($url, 0, -13);
+                    $url="https://docs.google.com/presentation/d/".$url."/edit#slide=id.p1";
+
+                    //$url=str_replace("/document/","/presentation/",$url);
+                    //return $url;
+                }
+                //return $url;
+                //return view('upload_page_view',compact('url'));
+                $data->presentation_slide_url=$url;
+
+            } catch (Exception $e) {
+                $data->presentation_slide_url=NULL;
+            }
         }
 
         $data->save();
@@ -142,6 +187,8 @@ class ProjectsController extends Controller
             //return Redirect()->back();
             return Redirect('/projects.show.'.$data->user_id);
         }
+
+
     }
 
 
@@ -151,6 +198,14 @@ class ProjectsController extends Controller
         $project=Project::findorfail($id);
         $project->delete();
         return Redirect('/projects');
+    }
+
+
+    public function search()
+    {
+        $search_text=$_GET['query'];
+        $projects=Project::where('project_name','LIKE', '%'.$search_text.'%')->get();
+        return view('projects.all_project',compact('projects','search_text'));
     }
 
 

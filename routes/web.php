@@ -44,6 +44,7 @@ Route::get('/projects.edit.{id}','ProjectsController@edit');
 Route::post('/projects.update.{id}', 'ProjectsController@update');
 Route::get('/projects.delete.{id}','ProjectsController@destroy');
 //Route::resource('/projects', 'ProjectsController);
+Route::get('/projects.search','ProjectsController@search');//SEARCH Project
 
 
 //Categories er Routes
@@ -78,6 +79,9 @@ Route::get('/ck_editors', function(){
     return view('ck_editors');
 })->name('/ck_editors');
 
+Route::get('/test', function(){
+    return view('test');
+})->name('/test');
 
 
 Route::get('/akash', 'PagesController@akash')->name('/akash');

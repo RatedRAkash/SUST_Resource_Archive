@@ -16,7 +16,7 @@ class CreateCommentSection extends Migration
         Schema::create('comment_section', function (Blueprint $table) {
             $table->integer('project_id');
             $table->integer('user_id');
-            $table->text('comment')->nullable();
+            $table->longText('comment')->nullable();
 
             $table->timestamps();
         });

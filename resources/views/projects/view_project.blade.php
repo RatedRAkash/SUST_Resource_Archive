@@ -42,151 +42,120 @@
 		<div class="row gx-5">
 			<div class="col-8">
 
-				<div data-bs-spy="scroll" style="height:700px; overflow-y:scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+           	<div data-bs-spy="scroll" style="height:700px; overflow-y:scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
 
-				<img src="{{ $project->image }}" class="rounded img-fluid" alt="No image available" style="width:850px;height:250px;">
-				<br><br>
+				<img src="{{ $project->image }}" class="rounded img-fluid" alt="No image available" style="height:350px;">
+
+                <br><br>
+
+                <script>
+                    function changeButtonText(id) {
+                        var x = document.getElementById(id);
+                        if (x.textContent === "Edit") {
+                            x.textContent = "Done";
+                        } else {
+                            x.textContent = "Edit";
+                        }
+                    }
+                </script>
+
+
 
 				<div class="card" id="resource-title">
-					<h5 class="card-header" >Thesis/Project Title</h5>
+
+
+                    <h5 class="card-header">Thesis/Project Title </h5>
 
 					<div class="card-body">
-						<h5 class="card-title">{{ $project->project_name }}</h5>
-						<p class="card-text"> <b>Started form:</b> {{ $project->created_at }} <br> <b>Last updated:</b> {{ $project->updated_at }} </p>
+						<h5 class="card-title" name="project_name" id="div_project_name">{{ $project->project_name }}</h5>
+                        <p class="card-text" name="project_created_at"> <b>Started from:</b> {{ $project->created_at }} <br> <b>Last updated:</b> {{ $project->updated_at }} </p>
+
 					</div>
 
+
 					<div class="card-footer">
-						<b>Tags:</b> ML, AI, Thesis, NLP
-					</div>
+						<b>Tags: </b><i id="div_category">{{ $project->category->category_name}}</i>
+                    </div>
+
 				</div>
 
 				<br>
 
-				<div class="card text-dark bg-light mb-3" id="abstract">
-					<h5 class="card-header">Abstract</h5>
 
-					<div class="card-body">
+
+
+				<div class="card text-dark bg-light mb-3" id="description">
+
+                    <h5 class="card-header"> Description</h5>
+
+                    <div class="card-body" id="div_project_description">
+						<p class="card-text" >
+						{!!$project->project_description!!}
+                        </p>
+					</div>
+
+				</div>
+
+
+
+
+				<div class="card text-dark bg-light mb-3" id="section-abstract">
+
+                    <h5 class="card-header"> Abstract</h5>
+
+                    <div class="card-body" id="div_project_abstract">
+						<p class="card-text" >
+						{!!$project->project_abstract!!}
+                        </p>
+					</div>
+
+				</div>
+
+
+
+
+            <div class="card text-dark bg-light mb-3" id="section-paper-pdf">
+
+                <h5 class="card-header">Full Paper Pdf</h5>
+
+                        <div class="card-body" id="div_paper_pdf_url">
+                            <p class="card-text">
+                            @if($project->pdf_url != null)
+                                <iframe src="{{ $project->pdf_url }}" style="width:750px; height:750px"></iframe>
+                            @else
+                                <iframe src="" style="height:50px"></iframe>
+                            @endif
+                            </p>
+                        </div>
+
+			</div>
+
+
+		<div class="card text-dark bg-light mb-3" id="section-presentation-slide">
+
+                <h5 class="card-header">Presentation Slide</h5>
+
+					<div class="card-body" id="div_project_document_url">
 						<p class="card-text">
-                        {{ $project->project_abstract }}
+
+                        @if($project->document_url != null)
+                            <iframe src="{{ $project->document_url }}" style="width:750px; height:750px"></iframe>
+                        @else
+                            <iframe src="" style="height:50px"></iframe>
+                        @endif
+
 						</p>
 					</div>
 
-					<div class="card-footer">
-						<b>Resources:</b>
-						<br>
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-									<img src="img_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Image1.png &nbsp;(<i>Image File</i>)
-								</div>
-								<div class="col">
-
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 
-				<div class="card text-dark bg-light mb-3" id="section-1">
-					<h5 class="card-header">Section 1</h5>
+
+				<div class="card text-dark bg-light mb-3" id="code-link">
+					<h5 class="card-header">Code Link</h5>
 
 					<div class="card-body">
 						<p class="card-text">
-							This is the part 1 of the resourse.
-						</p>
-					</div>
-
-					<div class="card-footer">
-						<b>Resources:</b>
-						<br>
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-									<img src="pdf_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									PDF1.pdf &nbsp;(<i>PDF File</i>)
-								</div>
-								<div class="col">
-
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="card text-dark bg-light mb-3" id="section-2">
-					<h5 class="card-header">Section 2</h5>
-
-					<div class="card-body">
-						<p class="card-text">
-							This is the part 2 of the resourse.
-						</p>
-					</div>
-
-					<div class="card-footer">
-						<b>Resources:</b>
-						<br>
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-									<img src="video_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Video1.mpg &nbsp;(<i>Video File</i>)
-								</div>
-								<div class="col">
-
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="card text-dark bg-light mb-3" id="section-3">
-					<h5 class="card-header">Section 3</h5>
-
-					<div class="card-body">
-						<p class="card-text">
-                        <iframe src="{{ $project->document_url }}" style="width:600px; height:500px"></iframe>
-							Presentation Slide
-						</p>
-					</div>
-
-					<div class="card-footer">
-						<b>Resources:</b>
-						<br>
-
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-
-                                <img src="presentation_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Presentation1.ppt &nbsp;(<i>Presentation File</i>)
-								</div>
-								<div class="col">
-
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="card text-dark bg-light mb-3" id="section-4">
-					<h5 class="card-header">Section 4</h5>
-
-					<div class="card-body">
-						<p class="card-text">
-							This is the part 4 of the resourse.
+							Link is here...
 						</p>
 					</div>
 
@@ -225,8 +194,8 @@
 						<div class="card text-white bg-dark mb-3">
 							<div class="row">
 								<div class="col col-sm-11">
-                                    <img src="program_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Code1.cpp &nbsp;(<i>Program File</i>)
+									<img src="presentation_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
+									Presentation1.ppt &nbsp;(<i>Presentation File</i>)
 								</div>
 								<div class="col">
 
@@ -238,9 +207,8 @@
 						    </div>
 					    </div>
 				    </div>
-			    </div>
+				</div>
 			</div>
-
 
 			<div class="position-fixed top-22 end-0 w-25">
 				<div class="container">
@@ -252,12 +220,13 @@
                             <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
                         @endif
                       @endif
+
                         <br>
                         <br>
 
 						<div id="list-example" class="list-group">
 						  <a class="list-group-item list-group-item-action" href="#resource-title">Thesis/Project Title</a>
-						  <a class="list-group-item list-group-item-action" href="#abstract">Abstract</a>
+						  <a class="list-group-item list-group-item-action" href="#abstract">Description</a>
 
 						<div class="accordion" id="accordionExample">
 
@@ -269,34 +238,35 @@
 								</h2>
 								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 								  <div class="accordion-body">
-									  <a class="list-group-item list-group-item-action" href="#section-1">Section 1</a>
-									  <a class="list-group-item list-group-item-action" href="#section-2">Section 2</a>
-									  <a class="list-group-item list-group-item-action" href="#section-3">Section 3</a>
-									  <a class="list-group-item list-group-item-action" href="#section-4">Section 4</a>
+									  <a class="list-group-item list-group-item-action" href="#section-1">Abstract</a>
+									  <a class="list-group-item list-group-item-action" href="#section-2">Paper Pdf</a>
+									  <a class="list-group-item list-group-item-action" href="#section-3">Presentation</a>
+									  <a class="list-group-item list-group-item-action" href="#section-4">Code Link</a>
 									  <a class="list-group-item list-group-item-action" href="#section-5">Section 5</a>
 
 								  </div>
 								</div>
 							  </div>
 
+						    </div>
 						</div>
-						</div>
 
 
-					  </div>
-					</div>
-				</div>
+					        </div>
+					    </div>
+				    </div>
 
-			</div>
+			    </div>
 
 		</div>
-
 	</div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
 
 @endsection

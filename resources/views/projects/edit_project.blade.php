@@ -43,42 +43,117 @@
 			<div class="col-8">
 
             <form id="upload_file" class="" action="{{url('projects.update.'.$project->id)}}" method="post" enctype="multipart/form-data">
-            @csrf  <!-- CSRF token use nah korle problem hobe -->
+                @csrf  <!-- CSRF token use nah korle problem hobe -->
 				<div data-bs-spy="scroll" style="height:700px; overflow-y:scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
 
 				<img src="{{ $project->image }}" class="rounded img-fluid" alt="No image available" style="height:350px;">
 
                 <br><br>
 
+                <script>
+                    function changeButtonText(id) {
+                        var x = document.getElementById(id);
+                        if (x.textContent === "Edit") {
+                            x.textContent = "Done";
+                        } else {
+                            x.textContent = "Edit";
+                        }
+                    }
+                </script>
+
+
+
 				<div class="card" id="resource-title">
-					<h5 class="card-header">Thesis/Project Title</h5>
+
+                    <script>
+                            function changeText_title()
+                            {   //document.getElementById("div_project_description").textContent = editor_description.getData();
+                                document.getElementById("div_project_name").textContent = document.getElementById("div_change_project_name").value;
+                            }
+
+                            function myFunction_title() {
+                            var x = document.getElementById("div_change_project_name");
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
+
+                    </script>
+
+                    <h5 class="card-header">Thesis/Project Title <small class="pull-right"><button type="button" id="edit_button_title" onclick="changeText_title(); myFunction_title(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
 					<div class="card-body">
-						<h5 class="card-title" name="project_name">{{ $project->project_name }}</h5>
-						<p class="card-text" name="project_created_at"> <b>Started from:</b> {{ $project->created_at }} <br> <b>Last updated:</b> {{ $project->updated_at }} </p>
+						<h5 class="card-title" name="project_name" id="div_project_name">{{ $project->project_name }}</h5>
+                        <input class="input-text" type="text" id="div_change_project_name" name="project_name" style="display: none" value="{{ $project->project_name }}"/>
+
+
+                        <p class="card-text" name="project_created_at"> <b>Started from:</b> {{ $project->created_at }} <br> <b>Last updated:</b> {{ $project->updated_at }} </p>
+
 					</div>
 
-					<div class="card-footer" name="category_id">
-						<b>Tags: </b>{{ $project->category->category_name}}, ML, AI, Thesis, NLP
-					</div>
+
+
+
+
+
+                    <script>
+                            function changeText_category()
+                            {   //document.getElementById("div_project_description").textContent = editor_description.getData();
+                                e = document.getElementById("Select_category_ID");
+                                txt = e.options[e.selectedIndex].text;
+                                document.getElementById("div_category").innerHTML = txt;
+                            }
+
+                            function myFunction_category() {
+                            var x = document.getElementById("Change_category_ID_DIV");
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
+                    </script>
+
+
+
+					<div class="card-footer">
+						<b>Tags: </b><i id="div_category">{{ $project->category->category_name}}</i>
+                        <small class="pull-right"><button type="button" id="edit_button_category" onclick="changeText_category(); myFunction_category(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small>
+
+                        <br>
+                        <br>
+
+                        <div class="control-group" id="Change_category_ID_DIV" style="display: none">
+                            <div class="form-group floating-label-form-group controls">
+                                <b><label>Choose Category</label></b>
+                                <select class="form-control" name="category_id" id="Select_category_ID">
+                                    @foreach ($category as $row)
+                                        <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
 
 				</div>
 
 				<br>
 
+
+
+
 				<div class="card text-dark bg-light mb-3" id="description">
 
                     <script>
-                            function changeText_description()
-                            {   //document.getElementById("div_project_description").textContent = editor_description.getData();
-                                document.getElementById("div_project_description").innerHTML = editor_description.getData();
-                            }
+                        function changeText_description()
+                        {   //document.getElementById("div_project_description").textContent = editor_description.getData();
+                            document.getElementById("div_project_description").innerHTML = editor_description.getData();
+                        }
 
-                    </script>
-
-
-                    <script>
-                            function myFunction_description() {
+                        function myFunction_description() {
                             var x = document.getElementById("Editor_ID_description");
                             if (x.style.display === "none") {
                                 x.style.display = "block";
@@ -89,7 +164,7 @@
                     </script>
 
 
-                    <h5 class="card-header"> Description <small class="pull-right"><button type="button" onclick="changeText_description(); myFunction_description();" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+                    <h5 class="card-header"> Description <small class="pull-right"><button type="button" id="edit_button_description" onclick="changeText_description(); myFunction_description(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
                     <div class="card-body" id="div_project_description">
 						<p class="card-text" >
@@ -136,15 +211,12 @@
 
 				<div class="card text-dark bg-light mb-3" id="section-abstract">
                     <script>
-                            function changeText_abstract()
-                            {
-                                document.getElementById("div_project_abstract").innerHTML = editor_abstract.getData();
-                            }
+                        function changeText_abstract()
+                        {
+                            document.getElementById("div_project_abstract").innerHTML = editor_abstract.getData();
+                        }
 
-                    </script>
-
-                    <script>
-                            function myFunction_abstract() {
+                        function myFunction_abstract() {
                             var x = document.getElementById("Editor_ID_abstract");
                             if (x.style.display === "none") {
                                 x.style.display = "block";
@@ -155,7 +227,7 @@
                     </script>
 
 
-                    <h5 class="card-header"> Abstract <small class="pull-right"><button type="button" onclick="changeText_abstract(); myFunction_abstract();" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+                    <h5 class="card-header"> Abstract <small class="pull-right"><button type="button" id="edit_button_abstract" onclick="changeText_abstract(); myFunction_abstract(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
                     <div class="card-body" id="div_project_abstract">
 						<p class="card-text" >
@@ -194,71 +266,46 @@
                             </div>
                         </div>
 					</div>
+
 				</div>
 
 
-		<div class="card text-dark bg-light mb-3" id="section-2">
-					<h5 class="card-header">Section 2 <small class="pull-right"><button type="button" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
-					<div class="card-body">
-						<p class="card-text">
-							This is the part 2 of the resourse.
-						</p>
-					</div>
-
-					<div class="card-footer">
-						<b>Resources:</b>
-						<br>
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-									<img src="video_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Video1.mpg &nbsp;(<i>Video File</i>)
-								</div>
-								<div class="col">
-
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
 
-		<div class="card text-dark bg-light mb-3" id="section-presentation-slide">
 
-                <script>
-                    function change_presentation_slide()
-                    {
-                        document.getElementById("div_project_document_url").src = document.getElementById("file").src;
+                <div class="card text-dark bg-light mb-3" id="section-paper-pdf">
+                    <script>
+                        function change_paper_pdf()
+                        {
+                            //document.getElementById("div_paper_pdf_url").src = document.getElementById("file").src;
+                        }
+
+                        function myFunction_change_paper_pdf() {
+                        var x = document.getElementById("paper_pdf_container");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                        }
+                        else {
+                            x.style.display = "none";
+                        }
                     }
-                </script>
+                    </script>
 
-                <script>
-                    function myFunction_presentation_slide() {
-                    var x = document.getElementById("presentation_slide_container");
-                    if (x.style.display === "none") {
-                        x.style.display = "block";
-                    } else {
-                        x.style.display = "none";
-                    }
-                }
+                <h5 class="card-header"> Full Paper <small class="pull-right"><button type="button" id="edit_button_pdf" onclick="myFunction_change_paper_pdf(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
-                </script>
-
-                <h5 class="card-header"> Presentation Slide <small class="pull-right"><button type="button" onclick="myFunction_presentation_slide();" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+                        <div class="card-body" id="div_paper_pdf_url">
+                            <p class="card-text">
+                            @if($project->pdf_url != null)
+                                <iframe src="{{ $project->pdf_url }}" style="width:750px; height:750px"></iframe>
+                            @else
+                                <iframe src="" style="height:50px"></iframe>
+                            @endif
+                            </p>
+                        </div>
 
 
-					<div class="card-body" id="div_project_document_url">
-						<p class="card-text">
-                            <iframe src="{{ $project->document_url }}" style="width:750px; height:750px"></iframe>
-						</p>
-					</div>
-
-					<div class="card-footer" id="presentation_slide_container" style="display: none">
-						<b>Change Presentation Slide:</b>
+					<div class="card-footer" id="paper_pdf_container" style="display: none">
+						<b>Change Paper pdf:</b>
 						<br>
 
                         <div class="container">
@@ -278,7 +325,7 @@
 
                                 <div class="form-group">
                                     <div class="control">
-                                        <input type="file" class="form-control-file" id="file" name="file">
+                                        <input type="file" class="form-control-file" id="pdf_file" name="pdf_file">
                                     </div>
                                 </div>
 
@@ -288,8 +335,8 @@
 						<div class="card text-white bg-dark mb-3">
 							<div class="row">
 								<div class="col col-sm-11">
-                                <img src="presentation_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Presentation1.ppt &nbsp;(<i>Presentation File</i>)
+                                <img src="pdf_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
+									Paper.pdf &nbsp;(<i>Pdf File</i>)
 								</div>
 								<div class="col">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
@@ -302,12 +349,91 @@
 
 				</div>
 
-				<div class="card text-dark bg-light mb-3" id="section-4">
-					<h5 class="card-header">Section 4 <small class="pull-right"><button type="button" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+
+		    <div class="card text-dark bg-light mb-3" id="section-presentation-slide">
+                <script>
+                    function change_presentation_slide()
+                    {
+                        document.getElementById("div_project_document_url").src = document.getElementById("file").src;
+                    }
+
+                    function myFunction_presentation_slide() {
+                    var x = document.getElementById("presentation_slide_container");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    }
+                    else {
+                        x.style.display = "none";
+                    }
+                }
+                </script>
+
+                <h5 class="card-header"> Presentation Slide <small class="pull-right"><button type="button" id="edit_button_presentation" onclick="myFunction_presentation_slide(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+
+					<div class="card-body" id="div_project_document_url">
+						<p class="card-text">
+
+                        @if($project->document_url != null)
+                            <iframe src="{{ $project->document_url }}" style="width:750px; height:750px"></iframe>
+                        @else
+                            <iframe src="" style="height:50px"></iframe>
+                        @endif
+
+						</p>
+					</div>
+
+					<div class="card-footer" id="presentation_slide_container" style="display: none">
+						<b>Change Presentation Slide:</b>
+						<br>
+
+                        <div class="container">
+                            @csrf
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                                <br>
+
+                                <div class="form-group">
+                                    <div class="control">
+                                        <input type="file" class="form-control-file" id="presentation_file" name="presentation_file">
+                                    </div>
+                                </div>
+
+                            <br><br><br>
+                        </div>
+
+						<div class="card text-white bg-dark mb-3">
+							<div class="row">
+								<div class="col col-sm-11">
+                                <img src="presentation_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
+									Presentation1.ppt &nbsp;(<i>Presentation File</i>)
+								</div>
+
+								<div class="col">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="card text-dark bg-light mb-3" id="code-link">
+					<h5 class="card-header">Code Link<small class="pull-right"><button type="button" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
 					<div class="card-body">
 						<p class="card-text">
-							This is the part 4 of the resourse.
+							Link is here...
 						</p>
 					</div>
 
@@ -390,9 +516,9 @@
 								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 								  <div class="accordion-body">
 									  <a class="list-group-item list-group-item-action" href="#section-1">Abstract</a>
-									  <a class="list-group-item list-group-item-action" href="#section-2">Section 2</a>
+									  <a class="list-group-item list-group-item-action" href="#section-2">Paper Pdf</a>
 									  <a class="list-group-item list-group-item-action" href="#section-3">Presentation</a>
-									  <a class="list-group-item list-group-item-action" href="#section-4">Section 4</a>
+									  <a class="list-group-item list-group-item-action" href="#section-4">Code Link</a>
 									  <a class="list-group-item list-group-item-action" href="#section-5">Section 5</a>
 
 								  </div>

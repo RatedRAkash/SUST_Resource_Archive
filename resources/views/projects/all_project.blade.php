@@ -40,7 +40,7 @@
                         </div>
 
                         <h2 class="entry-title">
-                            <a href="blog-single.html">{{ $row->name }}</a>
+                            <a href="{{url('projects.show.'.$row->id)}}">{{ $row->project_name }}</a>
                         </h2>
 
                         <div class="entry-meta">
@@ -57,7 +57,7 @@
 
                         <div class="entry-content">
                             <p>
-                            {{ $row->project_description }}
+                            {!!$row->project_description!!}
                             </p>
                             <div class="read-more">
                                 <a href="{{url('projects.show.'.$row->id)}}">Read More</a>
@@ -84,11 +84,17 @@
 
                         <h3 class="sidebar-title">Search</h3>
                         <div class="sidebar-item search-form">
-                            <form action="">
-                                <input type="text">
-                                <button type="submit"><i class="icofont-search"></i></button>
+                            <form action="{{url('/projects.search')}}">
+                                @if(@isset($search_text))
+                                    <input type="text" name="query" value="{{$search_text}}">
+                                    <button type="submit"><i class="icofont-search"></i></button>
+                                @else
+                                    <input type="text" name="query">
+                                    <button type="submit"><i class="icofont-search"></i></button>
+                                @endif
                             </form>
                         </div><!-- End sidebar search formn-->
+
 
                         <h3 class="sidebar-title">Categories</h3>
                         <div class="sidebar-item categories">
