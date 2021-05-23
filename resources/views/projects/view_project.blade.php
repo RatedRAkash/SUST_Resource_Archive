@@ -69,7 +69,6 @@
                     <span class="image-preview__default-text"></span>
                 </div>
 
-
                 <br><br>
 
                 <script>
@@ -144,8 +143,8 @@
 
                         <div class="card-body" id="div_paper_pdf_url">
                             <p class="card-text">
-                            @if($project->pdf_url != null)
-                                <iframe src="{{ $project->pdf_url }}" style="width:750px; height:750px"></iframe>
+                            @if($project->paper_pdf_url != null)
+                                <iframe src="{{ $project->paper_pdf_url }}" style="width:750px; height:750px"></iframe>
                             @else
                                 <iframe src="" style="height:50px"></iframe>
                             @endif
@@ -204,227 +203,196 @@
 				</div>
 
 
-				<div class="card text-dark bg-light mb-3" id="section-5">
+
+                <!-- COMMENT SECTION START -->
+                <div class="card text-dark bg-light mb-3" id="section-comment">
 					<h5 class="card-header">Comments</h5>
 
 					<div class="card-body">
 						<p class="card-text">
-							This is the part 5 of the resourse.
+
 						</p>
 					</div>
 
 					<div class="card-footer">
-						<b>Resources:</b>
+						<b>All Comments : {{$comments->count()}}</b>
 						<br>
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-									<img src="presentation_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Presentation1.ppt &nbsp;(<i>Presentation File</i>)
-								</div>
-								<div class="col">
-
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								    </div>
-							    </div>
-						    </div>
-					    </div>
-				    </div>
-
-
-
-            <!-- COMMENT CSS -->
-        <style>
-            body{
-                margin-top:20px;
-                background-color:#e9ebee;
-            }
-
-            .be-comment-block {
-                margin-bottom: 50px !important;
-                border: 1px solid #edeff2;
-                border-radius: 2px;
-                padding: 50px 70px;
-                border:1px solid #ffffff;
-            }
-
-            .textarea{
-                color: #000000;
-            }
-
-            .comments-title {
-                font-size: 16px;
-                color: #262626;
-                margin-bottom: 15px;
-                font-family: 'Conv_helveticaneuecyr-bold';
-            }
-
-            .be-img-comment {
-                width: 60px;
-                height: 60px;
-                float: left;
-                margin-bottom: 15px;
-            }
-
-            .be-ava-comment {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-            }
-
-            .be-comment-content {
-                margin-left: 80px;
-            }
-
-            .be-comment-content span {
-                display: inline-block;
-                width: 49%;
-                margin-bottom: 15px;
-            }
-
-            .be-comment-name {
-                font-size: 13px;
-                font-family: 'Conv_helveticaneuecyr-bold';
-            }
-
-            .be-comment-content a {
-                color: #383b43;
-            }
-
-            .be-comment-content span {
-                display: inline-block;
-                width: 49%;
-                margin-bottom: 15px;
-            }
-
-            .be-comment-time {
-                text-align: right;
-            }
-
-            .be-comment-time {
-                font-size: 11px;
-                color: #b4b7c1;
-            }
-
-            .be-comment-text {
-                font-size: 13px;
-                line-height: 18px;
-                color: #7a8192;
-                display: block;
-                background: #f6f6f7;
-                border: 1px solid #edeff2;
-                padding: 15px 20px 20px 20px;
-            }
-
-            .form-group.fl_icon .icon {
-                position: absolute;
-                top: 1px;
-                left: 16px;
-                width: 48px;
-                height: 48px;
-                background: #f6f6f7;
-                color: #b5b8c2;
-                text-align: center;
-                line-height: 50px;
-                -webkit-border-top-left-radius: 2px;
-                -webkit-border-bottom-left-radius: 2px;
-                -moz-border-radius-topleft: 2px;
-                -moz-border-radius-bottomleft: 2px;
-                border-top-left-radius: 2px;
-                border-bottom-left-radius: 2px;
-            }
-
-            .form-group .form-input {
-                font-size: 13px;
-                line-height: 50px;
-                font-weight: 400;
-                color: #b4b7c1;
-                width: 100%;
-                height: 50px;
-                padding-left: 20px;
-                padding-right: 20px;
-                border: 1px solid #edeff2;
-                border-radius: 3px;
-            }
-
-            .form-group.fl_icon .form-input {
-                padding-left: 70px;
-            }
-
-            .form-group textarea.form-input {
-                height: 150px;
-            }
-
-        </style>
+                        <br>
+                                    <style>
+                                        body{
+                                            margin-top:20px;
+                                            background-color:#e9ebee;
+                                        }
+                                        .be-comment-block {
+                                            margin-bottom: 50px !important;
+                                            border: 1px solid #edeff2;
+                                            border-radius: 2px;
+                                            padding: 50px 70px;
+                                            border:1px solid #ffffff;
+                                        }
+                                        .textarea{
+                                            color: #000000;
+                                        }
+                                        .comments-title {
+                                            font-size: 16px;
+                                            color: #262626;
+                                            margin-bottom: 15px;
+                                            font-family: 'Conv_helveticaneuecyr-bold';
+                                        }
+                                        .be-img-comment {
+                                            width: 60px;
+                                            height: 60px;
+                                            float: left;
+                                            margin-bottom: 15px;
+                                        }
+                                        .be-ava-comment {
+                                            width: 60px;
+                                            height: 60px;
+                                            border-radius: 50%;
+                                        }
+                                        .be-comment-content {
+                                            margin-left: 80px;
+                                        }
+                                        .be-comment-content span {
+                                            display: inline-block;
+                                            width: 49%;
+                                            margin-bottom: 15px;
+                                        }
+                                        .be-comment-name {
+                                            font-size: 13px;
+                                            font-family: 'Conv_helveticaneuecyr-bold';
+                                        }
+                                        .be-comment-content a {
+                                            color: #383b43;
+                                        }
+                                        .be-comment-content span {
+                                            display: inline-block;
+                                            width: 49%;
+                                            margin-bottom: 15px;
+                                        }
+                                        .be-comment-time {
+                                            text-align: right;
+                                        }
+                                        .be-comment-time {
+                                            font-size: 11px;
+                                            color: #b4b7c1;
+                                        }
+                                        .be-comment-text {
+                                            font-size: 13px;
+                                            line-height: 18px;
+                                            color: #7a8192;
+                                            display: block;
+                                            background: #f6f6f7;
+                                            border: 1px solid #edeff2;
+                                            padding: 15px 20px 20px 20px;
+                                        }
+                                        .form-group.fl_icon .icon {
+                                            position: absolute;
+                                            top: 1px;
+                                            left: 16px;
+                                            width: 48px;
+                                            height: 48px;
+                                            background: #f6f6f7;
+                                            color: #b5b8c2;
+                                            text-align: center;
+                                            line-height: 50px;
+                                            -webkit-border-top-left-radius: 2px;
+                                            -webkit-border-bottom-left-radius: 2px;
+                                            -moz-border-radius-topleft: 2px;
+                                            -moz-border-radius-bottomleft: 2px;
+                                            border-top-left-radius: 2px;
+                                            border-bottom-left-radius: 2px;
+                                        }
+                                        .form-group .form-input {
+                                            font-size: 13px;
+                                            line-height: 50px;
+                                            font-weight: 400;
+                                            color: #b4b7c1;
+                                            width: 100%;
+                                            height: 50px;
+                                            padding-left: 20px;
+                                            padding-right: 20px;
+                                            border: 1px solid #edeff2;
+                                            border-radius: 3px;
+                                        }
+                                        .form-group.fl_icon .form-input {
+                                            padding-left: 70px;
+                                        }
+                                        .form-group textarea.form-input {
+                                            height: 150px;
+                                        }
+                                    </style>
 
 
 
-            <!-- COMMENT SECTION START -->
-            <div class="card text-dark bg-light mb-3" id="section-5">
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-            <div class="container">
-            <div class="be-comment-block">
-                <h1 class="comments-title">Comments : {{$comments->count()}}</h1>
+                            <div class="card text-dark bg-light mb-3" id="section-5">
+                            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                            <div class="container">
+                            <div class="be-comment-block">
 
-                @foreach($comments as $comment)
-                <div class="be-comment">
-                    <div class="be-img-comment">
-                        <a href="blog-detail-2.html">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="be-ava-comment">
-                        </a>
+
+                                @foreach($comments as $comment)
+                                <div class="be-comment">
+                                    <div class="be-img-comment">
+                                        <a href="blog-detail-2.html">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="be-ava-comment">
+                                        </a>
+                                    </div>
+                                    <div class="be-comment-content">
+                                        <span class="be-comment-name">
+                                            <a href="blog-detail-2.html">{{$comment->user->name}}</a>
+                                        </span>
+                                        <span class="be-comment-time">
+                                            <i class="fa fa-clock-o"></i>
+                                            {{$comment->created_at}}
+                                        </span>
+                                        <p class="be-comment-text">
+                                            {{$comment->comment_text}}
+                                        </p>
+                                    </div>
+                                </div>
+                                @endforeach
+
+
+                                <form action="{{url('projects.store_comment_section.'.$project->id)}}" method="post" enctype="multipart/form-data" id="msform" class="form-block">
+                                    @csrf
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <!-- <div class="form-group fl_icon">
+                                                    <div class="icon"><i class="fa fa-user"></i></div>
+                                                    <input class="form-input" type="text" placeholder="Your name">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 fl_icon">
+                                                <div class="form-group fl_icon">
+                                                    <div class="icon"><i class="fa fa-envelope-o"></i></div>
+                                                    <input class="form-input" type="text" placeholder="Your email">
+                                                </div> -->
+
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <textarea class="form-input" name="comment_text" placeholder="Your text"></textarea>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" >Submit</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COMMENT SECTION END -->
+
+
+
                     </div>
-                    <div class="be-comment-content">
-                        <span class="be-comment-name">
-                            <a href="blog-detail-2.html">{{$comment->user->name}}</a>
-                        </span>
-                        <span class="be-comment-time">
-                            <i class="fa fa-clock-o"></i>
-                            {{$comment->created_at}}
-                        </span>
-                        <p class="be-comment-text">
-                            {{$comment->comment_text}}
-                        </p>
-                    </div>
+
                 </div>
-                @endforeach
-
-
-                <form action="{{url('projects.store_comment_section.'.$project->id)}}" method="post" enctype="multipart/form-data" id="msform" class="form-block">
-                @csrf
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6">
-                            <!-- <div class="form-group fl_icon">
-                                <div class="icon"><i class="fa fa-user"></i></div>
-                                <input class="form-input" type="text" placeholder="Your name">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 fl_icon">
-                            <div class="form-group fl_icon">
-                                <div class="icon"><i class="fa fa-envelope-o"></i></div>
-                                <input class="form-input" type="text" placeholder="Your email">
-                            </div> -->
-
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <textarea class="form-input" name="comment_text" placeholder="Your text"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" >Submit</button>
-                    </div>
-                </form>
-
 
             </div>
-            </div>
-            </div>
-            <!-- COMMENT SECTION END -->
 
-				</div>
-			</div>
-
+        </div>
 
 
 
@@ -436,9 +404,29 @@
 					  <div class="card-body">
 
                       @if(!Auth::guest())
+
                         @if(Auth::user()->id==$project->user_id)
                             <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
+
+                        <!-- Jei USER Access chaise -->
+                        @elseif(Auth::user()->id==$project_request->request_user_id)
+                            <!-- Access Paile ACCESS_CODE=1 tokon EDIT button dekhabo-->
+                            @if($project_request->access_code==1)
+                                <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
+                            <!-- Ei chara Wait for Access dekhabo -->
+                            @else
+                                <a><button type="submit" class="btn btn-sm btn-success">Wait for Access</button><a>
+                            @endif
+
+
+                        @else
+                            <form id="Request_button" class="" action="{{url('projects.project_request.'.$project->id)}}" method="post" enctype="multipart/form-data">
+                                @csrf  <!-- CSRF token use nah korle problem hobe -->
+                                <a><button type="submit" class="btn btn-sm btn-success">Request Access</button><a>
+                            </form>
                         @endif
+
+
                       @endif
 
                         <br>
@@ -469,13 +457,14 @@
 							  </div>
 
 						    </div>
+
 						</div>
 
 
-					        </div>
-					    </div>
+				        </div>
 				    </div>
 			    </div>
+			 </div>
 		</div>
 
 	</div>

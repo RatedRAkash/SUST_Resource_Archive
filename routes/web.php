@@ -49,6 +49,12 @@ Route::get('/projects.delete.{id}','ProjectsController@destroy');
 //Route::resource('/projects', 'ProjectsController);
 Route::get('/projects.search','ProjectsController@search');//SEARCH Project
 
+//PROJECT_REQUEST
+Route::post('/projects.project_request.{id}', 'ProjectsController@store_project_request');
+Route::get('/project_requests', 'ProjectsController@show_the_user_project_request');
+//PROJECT_GIVE_ACCESS
+Route::get('/project_access/{request_user_id}/{owner_id}/access_code={access_code}', 'ProjectsController@give_user_access');
+
 
 //Categories er Routes
 Route::get('/categories', 'CategoriesController@index');

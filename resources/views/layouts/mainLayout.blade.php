@@ -50,7 +50,7 @@
     <div class="container">
 
       <div class="logo float-left">
-        <a href="/features"><img src="assets/img/logo.png" class="img-fluid" alt="Responsive image"
+        <a href="{{ url('/') }}"><img src="assets/img/logo.png" class="img-fluid" alt="Responsive image"
             style="height: 100px; width: 250px;"></a>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -60,9 +60,13 @@
         <ul>
           <li id="home"><a href="{{ url('/') }}">Home</a></li>
           <li id="services"><a href="{{ url('/services') }}">Services</a></li>
-          <li id="blog"><a href="{{ url('/blog') }}">Single Blog</a></li>
+          <!-- <li id="blog"><a href="{{ url('/blog') }}">Single Blog</a></li> -->
           <li id="categories"><a href="{{ url('/categories') }}">Categories</a></li>
           <li id="projects"><a href="{{ url('/projects') }}">Projects</a></li>
+          @if(!Auth::guest())
+            <li id="project_requests"><a href="{{url('/project_requests')}}">Project Requests</a></li>
+          @endif
+
           <li class="drop-down"><a href="">Drop Down</a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>

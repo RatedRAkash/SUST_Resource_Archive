@@ -17,10 +17,12 @@ class CreateProjectRequestsTable extends Migration
 
             $table->id();
 
+            $table->integer('project_id');
+
             $table->integer('owner_id');
             $table->integer('request_user_id');
-            $table->integer('project_id');
-            $table->integer('access');
+
+            $table->integer('access_code');
 
             $table->timestamps();
         });

@@ -22,6 +22,8 @@ class CreateProjectsTable extends Migration
             $table->string('link_to_dataset')->nullable();
             $table->string('image')->nullable();
 
+            $table->integer('project_access_table_id')->nullable();
+
             $table->timestamps();
         });
     }

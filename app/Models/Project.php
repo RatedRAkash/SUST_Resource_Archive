@@ -26,4 +26,10 @@ class Project extends Model
         return $this->hasMany(CommentSection::class);
     }
 
+    public function projectrequest()
+    {
+        return $this->hasMany(ProjectRequest::class);
+    }
+
+
 }

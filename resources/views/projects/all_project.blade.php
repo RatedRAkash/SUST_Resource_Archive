@@ -98,11 +98,9 @@
                         <h3 class="sidebar-title">Categories</h3>
                         <div class="sidebar-item categories">
                             @foreach ($categories as $row)
-                            <div class="sidebar-item categories">
                                 <ul>
                                     <li><a href="{{url('categories.show.'.$row->id)}}">{{$row->category_name}} <span>( {{$row->project->count()}} )</span></a></li>
                                 </ul>
-                            </div><!-- End sidebar categories-->
                             @endforeach
 
                         </div><!-- End sidebar categories-->

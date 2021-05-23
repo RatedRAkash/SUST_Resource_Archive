@@ -41,4 +41,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\CommentSection');
     }
 
+    public function projectrequest()
+    {
+        return $this->hasMany('App\Models\ProjectRequest');
+    }
+
 }
