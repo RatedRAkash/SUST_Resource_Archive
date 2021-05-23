@@ -80,7 +80,8 @@
               <li><a href="#">Drop Down 5</a></li>
             </ul>
           </li>
-          <li><a href="{{ url('/contact') }}">Contact Us</a></li>
+          <li id="about"><a href="{{ url('/about') }}">About Us</a></li>
+          <li id="contact"><a href="{{ url('/contact') }}">Contact Us</a></li>
           @guest
           <li class="nav-item" id="login">
             <a class="nav-link" href="{{ url('/login') }}">{{ __('Login') }}</a>

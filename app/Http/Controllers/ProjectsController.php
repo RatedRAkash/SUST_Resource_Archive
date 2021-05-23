@@ -17,8 +17,12 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects=Project::all();
+        $categories=Category::all();
+
+        $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
+
         //return response()->json($project);
-        return view('projects.all_project',compact('projects'));
+        return view('projects.all_project',compact('projects','categories','project_latest'));
     }
 
 
@@ -122,8 +126,7 @@ class ProjectsController extends Controller
         $data->project_abstract=$request->project_abstract;
 
 
-
-        $image=$request->image;
+        $image =$request->file('imageFile');
         if($image)
         {
             $image_name=hexdec(uniqid());
@@ -134,6 +137,7 @@ class ProjectsController extends Controller
             $success=$image->move($upload_path,$image_full_name);
             $data->image=$image_url;
         }
+
 
 
         $file = $request->file('pdf_file');

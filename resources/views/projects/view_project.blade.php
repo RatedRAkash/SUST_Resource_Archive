@@ -44,7 +44,31 @@
 
            	<div data-bs-spy="scroll" style="height:700px; overflow-y:scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
 
-				<img src="{{ $project->image }}" class="rounded img-fluid" alt="No image available" style="height:350px;">
+               <style>
+                    .image-preview{
+                        min-height: 50px;
+                        min-width: 50px;
+                        border: 2px solid #dddddd;
+                        margin-top: 15px;
+
+                        display: flex:
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold:
+                        color: #cccccc;
+                    }
+
+                    .image-preview__image{
+                        width: 100%;
+                    }
+
+                </style>
+
+                <div class="image-preview" id="imagePreview">
+                    <img src="{{ $project->image }}" class="image-preview__image" alt="No image available" style="height:350px;">
+                    <span class="image-preview__default-text"></span>
+                </div>
+
 
                 <br><br>
 

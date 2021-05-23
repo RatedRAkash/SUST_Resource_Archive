@@ -97,48 +97,27 @@
 
                         <h3 class="sidebar-title">Categories</h3>
                         <div class="sidebar-item categories">
-                            <ul>
-                                <li><a href="#">General <span>(25)</span></a></li>
-                                <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                <li><a href="#">Travel <span>(5)</span></a></li>
-                                <li><a href="#">Design <span>(22)</span></a></li>
-                                <li><a href="#">Creative <span>(8)</span></a></li>
-                                <li><a href="#">Educaion <span>(14)</span></a></li>
-                            </ul>
+                            @foreach ($categories as $row)
+                            <div class="sidebar-item categories">
+                                <ul>
+                                    <li><a href="{{url('categories.show.'.$row->id)}}">{{$row->category_name}} <span>( {{$row->project->count()}} )</span></a></li>
+                                </ul>
+                            </div><!-- End sidebar categories-->
+                            @endforeach
 
                         </div><!-- End sidebar categories-->
 
                         <h3 class="sidebar-title">Recent Posts</h3>
                         <div class="sidebar-item recent-posts">
-                            <div class="post-item clearfix">
-                                <img src="assets/img/recent-posts-1.jpg" alt="">
-                                <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
 
+                        @foreach ($project_latest as $project)
                             <div class="post-item clearfix">
-                                <img src="assets/img/recent-posts-2.jpg" alt="">
-                                <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
+                                <img src="{{ URL::to($project->image) }}" alt="">
+                                <h4><a href="blog-single.html">{{$project->name}}</a></h4>
+                                <time datetime="2020-01-01">{{$project->updated_at}}</time>
                             </div>
+                        @endforeach
 
-                            <div class="post-item clearfix">
-                                <img src="assets/img/recent-posts-3.jpg" alt="">
-                                <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/recent-posts-4.jpg" alt="">
-                                <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-
-                            <div class="post-item clearfix">
-                                <img src="assets/img/recent-posts-5.jpg" alt="">
-                                <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
                         </div><!-- End sidebar recent posts-->
 
                         <h3 class="sidebar-title">Tags</h3>

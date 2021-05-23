@@ -429,7 +429,7 @@
       								<select type="text" name="category_id" class="selectpicker my-select" data-width="100%" aria-label="Default select example">
                                       @foreach ($category as $row)
                                         <option value="{{ $row->id }}">{{ $row->category_name }}</option>
-                                    @endforeach
+                                      @endforeach
       							</select>
 
 

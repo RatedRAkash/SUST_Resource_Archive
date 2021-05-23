@@ -47,10 +47,8 @@
 
                 <div data-bs-spy="scroll" style="height:700px; overflow-y:scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
 
-				<img src="{{ $project->image }}" class="rounded img-fluid" alt="No image available" style="height:350px;">
 
-                <br><br>
-
+                <!-- CHANGE BUTTON(UNIVERSAL) -->
                 <script>
                     function changeButtonText(id) {
                         var x = document.getElementById(id);
@@ -64,7 +62,104 @@
 
 
 
-				<div class="card" id="resource-title">
+
+
+
+            <!-- Project IMAGE -->
+                <style>
+                    .image-preview{
+                        min-height: 50px;
+                        min-width: 50px;
+                        border: 2px solid #dddddd;
+                        margin-top: 15px;
+
+                        display: flex:
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold:
+                        color: #cccccc;
+                    }
+
+                    .image-preview__image{
+                        width: 100%;
+                    }
+
+                </style>
+
+
+                <div class="image-preview" id="imagePreview">
+                    <img src="{{ $project->image }}" class="image-preview__image" alt="No image available" style="height:350px;">
+                    <span class="image-preview__default-text"></span>
+                </div>
+
+
+                <br>
+
+                <div>
+                    <h5 class="card-header">Project Image<small class="pull-right"><button type="button" id="edit_button_image" onclick="myFunction_image(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+
+                    <div class="card-body" id="div_project_image" style="display: none">
+                        <input type="file" name="imageFile" id="imageFile">
+                    </div>
+                </div>
+
+                <br><br>
+
+                <script>
+                    const inpFile = document.getElementById("imageFile");
+                    const previewContainer = document.getElementById("imagePreview");
+                    const previewImage = previewContainer.querySelector(".image-preview__image");
+                    const previewDefaultText= previewContainer.querySelector(".image-preview__default-text");
+
+                    inpFile.addEventListener("change",function() {
+                                const file = this.files[0];
+
+                    if(file)
+                    {
+                        const reader = new FileReader();
+
+                        previewDefaultText.style.display = "none";
+                        previewImage.style.display = "block";
+
+                        reader.addEventListener("load",function() {
+                            previewImage.setAttribute("src",this.result);
+                        });
+
+                        reader.readAsDataURL(file);
+                    }
+
+                    else
+                    {
+                        previewDefaultText.style.display = null;
+                        previewImage.style.display = null;
+                        previewImage.setAttribute("src","");
+                    }
+
+                });
+
+
+                function myFunction_image() {
+                        var x = document.getElementById("div_project_image");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }
+                    }
+
+
+            </script>
+
+            <!-- END Project IMAGE -->
+
+
+
+
+
+
+
+            <!-- THESIS Title -->
+			<div class="card" id="resource-title">
 
                     <script>
                             function changeText_title()
@@ -98,6 +193,9 @@
 
 
 
+
+
+                <!-- Category -->
 
                     <script>
                             function changeText_category()

@@ -17,8 +17,9 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories=Category::all();
+        $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
         //return response()->json($project);
-        return view('categories.all_category',compact('categories'));
+        return view('categories.all_category',compact('categories','project_latest'));
     }
 
 
@@ -60,7 +61,10 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $category=Category::findorfail($id);
-        return view('categories.view_category',compact('category'));
+        $categories_list=Category::all();
+
+        $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
+        return view('categories.view_category',compact('category','categories_list','project_latest'));
     }
 
 

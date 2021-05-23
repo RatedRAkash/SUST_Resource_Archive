@@ -1,55 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>How To Use WYSIHTML5 Editor In Laravel? - NiceSnippets.com</title>
-    <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/css/prettify.css"></link>
-    <link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//src/bootstrap-wysihtml5.css"></link>
+
 </head>
-<body class="wysihtml5-supported">
-    <div class="container">
-        <div class="row" style="margin-top: 50px;">
-            <div class="col-md-12">
-                <div id="showimages"></div>
-            </div>
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 style="color: black;">How To Use WYSIHTML5 Editor In Laravel? - NiceSnippets.com</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form class="image-upload" method="post" action="" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Author Name</label>
-                                <input type="text" name="auther_name" class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="description" class="textarea" style="width: 730px; height: 200px"></textarea>
-                            </div>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-success btn-sm">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+<body>
+
+<style>
+    .image-preview{
+        width: 300px;
+        min-height: 100px;
+        border: 2px solid #dddddd;
+        margin-top: 15px;
+
+        display: flex:
+        align-items: center;
+        justify-content: center;
+        font-weight: bold:
+        color: #cccccc;
+    }
+
+    .image-preview__image{
+        display: none;
+        width: 100%;
+    }
+
+</style>
+
+    <h1>Image Preview of File Upload</h1>
+    <input type="file" name="inpFile" id="inpFile">
+    <div class="image-preview" id="imagePreview">
+        <img src="" alt="Image Preview" class="image-preview__image">
+        <span class="image-preview__default-text">Image Preview</span>
     </div>
-    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/wysihtml5-0.3.0.js"></script>
-    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/jquery-1.7.2.min.js"></script>
-    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/prettify.js"></script>
-    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/bootstrap.min.js"></script>
-    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//src/bootstrap-wysihtml5.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-          $('.textarea').wysihtml5();
+
+    <script>
+        const inpFile = document.getElementById("inpFile");
+        const previewContainer = document.getElementById("imagePreview");
+        const previewImage = previewContainer.querySelector(".image-preview__image");
+        const previewDefaultText= previewContainer.querySelector(".image-preview__default-text");
+
+        inpFile.addEventListener("change",function() {
+            const file = this.files[0];
+
+            if(file)
+            {
+                const reader = new FileReader();
+
+                previewDefaultText.style.display = "none";
+                previewImage.style.display = "block";
+
+                reader.addEventListener("load",function() {
+                    previewImage.setAttribute("src",this.result);
+                });
+
+                reader.readAsDataURL(file);
+            }
+
+            else
+            {
+                previewDefaultText.style.display = null;
+                previewImage.style.display = null;
+                previewImage.setAttribute("src","");
+            }
+
         });
+
     </script>
 </body>
 </html>
