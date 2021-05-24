@@ -26,6 +26,11 @@ class User extends Authenticatable
     ];
 
 
+    public function userprofile()
+    {
+        return $this->hasOne('App\Models\UserProfile');
+    }
+
     public function category()
     {
         return $this->hasMany('App\Models\Category');

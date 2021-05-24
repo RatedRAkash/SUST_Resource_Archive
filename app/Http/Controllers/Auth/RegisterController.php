@@ -9,6 +9,14 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
+use App\Models\Category;
+use App\Models\Project;
+use App\Models\Document;
+use App\Models\CommentSection;
+use App\Models\ProjectRequest;
+use App\Models\UserProfile;
+
 class RegisterController extends Controller
 {
     /*
@@ -26,7 +34,11 @@ class RegisterController extends Controller
 
 
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/';
+    //protected $redirectTo = '/';
+    protected function redirectTo()
+    {
+        return '/';
+    }
 
     public function __construct()
     {
@@ -46,10 +58,19 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user_profile=new UserProfile;
+        $user_profile->user_id=$user->id;
+        $user_profile->name=$user->name;
+        $user_profile->email=$user->email;
+
+        $user_profile->save();
+
+        return $user;
     }
 }

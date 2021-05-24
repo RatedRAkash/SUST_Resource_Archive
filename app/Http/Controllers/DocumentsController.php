@@ -8,6 +8,9 @@ use App\User;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\Document;
+use App\Models\CommentSection;
+use App\Models\ProjectRequest;
+use App\Models\UserProfile;
 
 class DocumentsController extends Controller
 {

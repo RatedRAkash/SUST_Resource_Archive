@@ -60,11 +60,27 @@ Route::get('/project_access/{request_user_id}/{owner_id}/access_code={access_cod
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/categories.create', 'CategoriesController@create');
 Route::post('/categories.store', 'CategoriesController@store');
-Route::get('/categories.show.{id}','CategoriesController@show');
+Route::get('/user_profile.show.{id}','CategoriesController@show');
 Route::get('/categories.edit.{id}','CategoriesController@edit');
 Route::post('/categories.update.{id}', 'CategoriesController@update');
 Route::get('/categories.delete.{id}','CategoriesController@destroy');
 Route::get('/categories.search','CategoriesController@search');//SEARCH Category
+
+
+//User er Routes
+Route::get('/users_profile', 'UsersProfileController@index');
+Route::get('/users_profile.create', 'UsersProfileController@create');
+Route::post('/users_profile.store', 'UsersProfileController@store');
+Route::get('/users_profile.show.{id}','UsersProfileController@show');
+Route::get('/users_profile.edit.{id}','UsersProfileController@edit');
+Route::post('/users_profile.update.{id}', 'UsersProfileController@update');
+Route::get('/users_profile.delete.{id}','UsersProfileController@destroy');
+Route::get('/users_profile.search','UsersProfileController@search');//SEARCH User
+
+
+
+
+
 
 
 Route::get('/documents','DocumentsController@index');

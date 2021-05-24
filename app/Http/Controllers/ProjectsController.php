@@ -11,7 +11,7 @@ use App\Models\Project;
 use App\Models\Document;
 use App\Models\CommentSection;
 use App\Models\ProjectRequest;
-use App\Models\ProjectAccess;
+use App\Models\UserProfile;
 
 class ProjectsController extends Controller
 {
