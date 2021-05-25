@@ -148,7 +148,6 @@ class ProjectsController extends Controller
         }
 
 
-
         $file = $request->file('pdf_file');
         if($file)
         {
@@ -203,7 +202,6 @@ class ProjectsController extends Controller
         $data->save();
 
         //return response()->json($data);
-
         if($data){
             //return Redirect()->back();
             return Redirect('/projects.show.'.$data->user_id);

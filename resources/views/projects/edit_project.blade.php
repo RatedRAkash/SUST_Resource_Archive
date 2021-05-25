@@ -42,9 +42,8 @@
 		<div class="row gx-5">
 			<div class="col-8">
 
-            <form id="upload_file" class="" action="{{url('projects.update.'.$project->id)}}" method="post" enctype="multipart/form-data">
+            <form id="save_form" class="" action="{{url('projects.update.'.$project->id)}}" method="post" enctype="multipart/form-data">
                 @csrf  <!-- CSRF token use nah korle problem hobe -->
-
                 <div data-bs-spy="scroll" style="height:700px; overflow-y:scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
 
 
@@ -162,12 +161,13 @@
 			<div class="card" id="resource-title">
 
                     <script>
-                            function changeText_title()
-                            {   //document.getElementById("div_project_description").textContent = editor_description.getData();
-                                document.getElementById("div_project_name").textContent = document.getElementById("div_change_project_name").value;
-                            }
+                        function changeText_title()
+                        {   //document.getElementById("div_project_description").textContent = editor_description.getData();
+                            document.getElementById("div_project_name").textContent = document.getElementById("div_change_project_name").value;
+                        }
 
-                            function myFunction_title() {
+                        function myFunction_title()
+                        {
                             var x = document.getElementById("div_change_project_name");
                             if (x.style.display === "none") {
                                 x.style.display = "block";
@@ -498,7 +498,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            @endif
+                                @endif
 
                                 <br>
 
@@ -731,31 +731,6 @@
                                 @endforeach
 
 
-                                <form action="{{url('projects.store_comment_section.'.$project->id)}}" method="post" enctype="multipart/form-data" id="msform" class="form-block">
-                                @csrf
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-6">
-                                            <!-- <div class="form-group fl_icon">
-                                                <div class="icon"><i class="fa fa-user"></i></div>
-                                                <input class="form-input" type="text" placeholder="Your name">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 fl_icon">
-                                            <div class="form-group fl_icon">
-                                                <div class="icon"><i class="fa fa-envelope-o"></i></div>
-                                                <input class="form-input" type="text" placeholder="Your email">
-                                            </div> -->
-
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <textarea class="form-input" name="comment_text" placeholder="Your text"></textarea>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" >Submit</button>
-                                    </div>
-                                </form>
-
 
                                 </div>
                             </div>
@@ -778,7 +753,7 @@
                         <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
 
 
-                        <button type="submit" class="btn btn-sm btn-danger">Save</button>
+                        <button type="submit"  form="save_form" class="btn btn-sm btn-danger">Save</button>
 
                         <br>
                         <br>
@@ -814,12 +789,11 @@
 					        </div>
 					    </div>
 				    </div>
-
 			    </div>
 		    </form>
+
 		</div>
 	</div>
-
 </div>
 
 <br>

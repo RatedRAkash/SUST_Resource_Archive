@@ -60,7 +60,7 @@ Route::get('/project_access/{request_user_id}/{owner_id}/access_code={access_cod
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/categories.create', 'CategoriesController@create');
 Route::post('/categories.store', 'CategoriesController@store');
-Route::get('/user_profile.show.{id}','CategoriesController@show');
+Route::get('/categories.show.{id}','CategoriesController@show');
 Route::get('/categories.edit.{id}','CategoriesController@edit');
 Route::post('/categories.update.{id}', 'CategoriesController@update');
 Route::get('/categories.delete.{id}','CategoriesController@destroy');

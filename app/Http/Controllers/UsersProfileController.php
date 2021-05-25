@@ -44,18 +44,44 @@ class UsersProfileController extends Controller
 
     public function edit($id)
     {
+        $user_profile=UserProfile::findorfail($id);
+        $projects=Project::where('user_id','=', $id)->get();
 
+        return view('users_profile.edit_user_profile',compact('user_profile','projects'));
     }
 
 
     public function update(Request $request, $id)
     {
         $user_profile=UserProfile::findorfail($id);
-        //$user_profile->image="asd";
-        $user_profile->user_id=auth()->user()->id;
-        $user_profile->category_id=$request->category_id;
 
-        return view('users_profile.view_user_profile');
+        $image =$request->file('image');
+
+        if($image)
+        {
+            $image_name=hexdec(uniqid());
+            $ext=strtolower($image->getClientOriginalExtension());
+            $image_full_name=$image_name.'.'.$ext;
+            $upload_path='images/user_profile_image/';
+            $image_url=$upload_path.$image_full_name;
+            $success=$image->move($upload_path,$image_full_name);
+            $user_profile->image=$image_url;
+        }
+
+        $user_profile->name=$request->textbox_name;
+        $user_profile->phone_number=$request->textbox_phone;
+        $user_profile->profession=$request->textbox_profession;
+        $user_profile->address=$request->textbox_address;
+
+        $user_profile->website_link=$request->textbox_website_link;
+        $user_profile->github_link=$request->textbox_github_link;
+        $user_profile->twitter_link=$request->textbox_twitter_link;
+        $user_profile->instagram_link=$request->textbox_instagram_link;
+        $user_profile->facebook_link=$request->textbox_facebook_link;
+
+        $user_profile->save();
+
+        return Redirect('/users_profile.show.'.$user_profile->user_id);
     }
 
 
