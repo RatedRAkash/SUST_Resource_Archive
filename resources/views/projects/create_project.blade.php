@@ -471,13 +471,13 @@
                                 <label class="fieldlabels">Is this a personal work/academic work/contest work?*</label>
                                 <select type="text" name="option_workspace_type" class="selectpicker my-selec" onchange="active_field(this.value)" data-width="100%" aria-label="Default select example">
                                     <option disabled selected>Choose your answer.</option>
-                                    <option value="Personal">Personal</option>
-                                    <option value="Academic" >Academic</option>
-                                    <option value="Contest">Contest</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="academic" >Academic</option>
+                                    <option value="contest">Contest</option>
                                 </select><br><br>
 
 
-                            <div class="d-none" id="academic_option">
+                            <!-- <div class="d-none" id="academic_option">
       								<label class="fieldlabels">Course Details *</label>
       								<select id="partners" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
 
@@ -497,9 +497,9 @@
       								<label class="fieldlabels">Contest Details </label>
       								<textarea class="form-control textarea-text" name="abstract" id="abstract" rows="5" placeholder="Tell us about the contest in details(name, category, position etc...)"></textarea>
       								<br>
-      								</div>
+      								</div> -->
 
-                      <script>
+                                <script>
       									function active_field(value){
 
       										if (value=="Personal"){
@@ -565,10 +565,12 @@
 
                                     <div id="project-partner">
       								<label class="fieldlabels">Add partners </label>
-      								<select id="partners" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
+      								<select id="partners" name="partner_id" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
 
-                                      @foreach ($all_users as $row)
-                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                      @foreach($all_users as $row)
+                                        @if(Auth::user()->id!=$row->id)
+                                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                        @endif
                                       @endforeach
 
       								</select>
@@ -578,10 +580,12 @@
 
       								<div id="project-suprervisor">
       								<label class="fieldlabels">Add supervisor </label>
-      								<select id="suprervisors" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
+      								<select id="suprervisors" name="supervisor_id" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
 
-                                      @foreach ($all_users as $row)
-                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                      @foreach($all_users as $row)
+                                        @if(Auth::user()->id!=$row->id)
+                                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                        @endif
                                       @endforeach
 
       								</select>

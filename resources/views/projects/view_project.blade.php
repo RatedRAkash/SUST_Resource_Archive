@@ -408,6 +408,7 @@
 
                         @if(Auth::user()->id==$project->user_id)
                             <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
+                            <a href="{{url('projects.delete.'.$project->id)}}" class="btn btn-sm btn-danger">Delete</a>
 
                         <!-- Jei USER Access chaise -->
                         @elseif($project_request!="[]")

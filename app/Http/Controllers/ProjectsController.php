@@ -50,6 +50,7 @@ class ProjectsController extends Controller
         $data->project_or_thesis=$request->option_project_or_thesis;
         $data->workspace_type=$request->option_workspace_type;
 
+
         $image =$request->file('image');
 
         if($image)
@@ -64,6 +65,32 @@ class ProjectsController extends Controller
         }
 
         $data->save();
+
+
+        //ACCESS To Partner & Supervisor
+        if($request->partner_id)
+        {
+            $project_request=new ProjectRequest;
+            $project_request->project_id=$data->id;
+            $project_request->owner_id=auth()->user()->id;;
+            $project_request->request_user_id=$request->partner_id;
+            $project_request->access_code=1;
+            $project_request->save();
+        }
+
+
+        if($request->supervisor_id)
+        {
+            $project_request=new ProjectRequest;
+            $project_request->project_id=$data->id;
+            $project_request->owner_id=auth()->user()->id;;
+            $project_request->request_user_id=$request->supervisor_id;
+            $project_request->access_code=1;
+            $project_request->save();
+        }
+
+
+        //END ACCESS
 
 
         //return response()->json($data);
@@ -251,8 +278,18 @@ class ProjectsController extends Controller
         $project=Project::findorfail($id);
         $current_user_id=auth()->user()->id;
 
+        $project_requests=ProjectRequest::where('project_id','=',$id)->get();
+
         if($project->user_id == $current_user_id)
         {
+            if($project_requests)
+            {
+                foreach($project_requests as $row)
+                {
+                    $row->delete();
+                }
+
+            }
             $project->delete();
             return Redirect('/projects');
         }
@@ -261,7 +298,6 @@ class ProjectsController extends Controller
         {
             return view('pages.not_authorized');
         }
-
     }
 
 
