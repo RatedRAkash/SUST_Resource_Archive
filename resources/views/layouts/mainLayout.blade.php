@@ -99,7 +99,33 @@
           @endif
 
           @else
-            <li class="nav-item dropdown">
+          <li class="drop-down"><a href="{{url('/users_profile.show.'.Auth::user()->id)}}">{{ Auth::user()->name }}</a>
+
+          <ul>
+                  <li><a href="{{url('/users_profile.show.'.Auth::user()->id)}}">My Profile</a></li>
+                  <li><a href="{{url('/projects.create')}}">Create Project</a></li>
+
+                  <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                  </li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+
+            </ul>
+            </li>
+
+
+
+
+
+
+            <!-- <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
@@ -116,7 +142,10 @@
                     </form>
                 </div>
 
-            </li>
+            </li> -->
+
+
+
           @endguest
 
 
@@ -232,8 +261,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
-  <!--<script src="assets/vendor/jquery/jquery.min.js"></script>-->
-  <!--<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/venobox/venobox.min.js"></script>
@@ -248,6 +277,13 @@
   <!-- Template Main JS File -->
   <script src="assets/js/global.js"></script>
   <script src="assets/js/main.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+  <script type='text/javascript'>$('.my-select').selectpicker();</script>
 
 </body>
 

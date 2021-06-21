@@ -83,6 +83,9 @@ Route::get('/users_profile.search','UsersProfileController@search');//SEARCH Use
 
 
 
+
+
+
 Route::get('/documents','DocumentsController@index');
 Route::get('/documents_create','DocumentsController@create');
 Route::post('/documents','DocumentsController@store');
@@ -108,6 +111,13 @@ Route::get('/test', function(){
     return view('test');
 })->name('/test');
 
+Route::get('/create_resource', function(){
+    return view('features/create_resource');
+});
+
+Route::get('/resources', function(){
+    return view('features/show_resources');
+})->name('/resources');
 
 Route::get('/akash', 'PagesController@akash')->name('/akash');
 

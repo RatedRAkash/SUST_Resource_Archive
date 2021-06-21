@@ -8,12 +8,42 @@
         document.getElementById('about').className = "active";
     </script>
 
+    <!-- ======= About Us Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h4>Projects</h4>
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li>Projects</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End About Us Section -->
+
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/projects') }}">All Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{{url('/projects.create')}}" class="btn btn-success">Create Project</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Project</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('/project_requests')}}">Project Requests</a>
+        </li>
+      </ul>
 
       <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 	    <script src="https://use.fontawesome.com/52c50009ac.js"></script>
      <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet'>
+
 
       <style>
     		* {
@@ -394,11 +424,12 @@
 
                                     <div class="card-body">
 
-                                    <textarea name="content" class="form-control textarea-text" name="project_description" id="abstract" rows="5" placeholder="Tell us about your researh/project ..."></textarea>
-                                        <script src="ckeditor/ckeditor.js"></script>
-                                        <script>
-                                            CKEDITOR.replace('abstract');
-                                        </script>
+                                        <textarea name="content" class="form-control textarea-text" name="project_description" id="project_description" rows="5" placeholder="Tell us about your researh/project ..."></textarea>
+                                            <script src="ckeditor/ckeditor.js"></script>
+
+                                            <script>
+                                                CKEDITOR.replace('project_description');
+                                            </script>
 
 					                </div>
 
@@ -524,10 +555,9 @@
       								<select id="users" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" onchange="selectAll(this)">
 
       								  <option value="All" selected >Select All</option>
-      								  <option selected>Nuhash</option>
-      								  <option selected>Shovo</option>
-      								  <option selected>Akash</option>
-      								  <option selected>Borhan</option>
+      								  @foreach ($all_users as $row)
+                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                      @endforeach
 
       								</select>
       								<br>
@@ -538,10 +568,9 @@
       								<label class="fieldlabels">Add partners </label>
       								<select id="partners" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
 
-      								  <option>Nuhash</option>
-      								  <option>Shovo</option>
-      								  <option>Akash</option>
-      								  <option>Borhan</option>
+                                      @foreach ($all_users as $row)
+                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                      @endforeach
 
       								</select>
       								</div>
@@ -549,12 +578,11 @@
 
       								<div id="project-suprervisor">
       								<label class="fieldlabels">Add supervisor </label>
-      								<select id="supervisors" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
+      								<select id="suprervisors" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
 
-      								  <option>Nuhash</option>
-      								  <option>Shovo</option>
-      								  <option>Akash</option>
-      								  <option>Borhan</option>
+                                      @foreach ($all_users as $row)
+                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                      @endforeach
 
       								</select>
       								</div>

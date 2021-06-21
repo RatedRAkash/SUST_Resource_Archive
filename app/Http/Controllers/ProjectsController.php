@@ -12,6 +12,7 @@ use App\Models\Document;
 use App\Models\CommentSection;
 use App\Models\ProjectRequest;
 use App\Models\UserProfile;
+use Auth;
 
 class ProjectsController extends Controller
 {
@@ -31,7 +32,9 @@ class ProjectsController extends Controller
     public function create()
     {
         $category=Category::all();
-        return view('projects.create_project',compact('category'));
+        $all_users=User::all();
+
+        return view('projects.create_project',compact('category','all_users'));
     }
 
 
@@ -72,25 +75,35 @@ class ProjectsController extends Controller
 
         $comments=CommentSection::where('project_id','=', $id)->get();
 
-        $current_user_id=auth()->user()->id;
-
-        $project_request=ProjectRequest::where('project_id','=',$id)
-                                         ->where('request_user_id','=',$current_user_id)
-                                         ->get();//LIST return kore... tai "0"th element access korar jonno [0] dibo
-
-        //If tokon sotti hobe jokon kono USER nijer toiri PROJECT ee dhuke
-        if($project_request->isEmpty())
+        if(Auth::guest())
         {
-            $project_request=ProjectRequest::where('project_id','=',$id)
-                                            ->where('owner_id','=',$current_user_id)
-                                            ->get();
+            $project_request=NULL;
         }
 
-        //QUERY a COLLECTION of Object RETURN kore... tai amra 1st Element ke return korbo
         else
         {
-            $project_request=$project_request[0];
+            $current_user_id=auth()->user()->id;
+
+            $project_request=ProjectRequest::where('project_id','=',$id)
+                                            ->where('request_user_id','=',$current_user_id)
+                                            ->get();//LIST return kore... tai "0"th element access korar jonno [0] dibo
+
+            //If tokon sotti hobe jokon kono USER nijer toiri PROJECT ee dhuke
+            if($project_request->isEmpty())
+            {
+                $project_request=ProjectRequest::where('project_id','=',$id)
+                                                ->where('owner_id','=',$current_user_id)
+                                                ->get();
+
+            }
+
+            //QUERY a COLLECTION of Object RETURN kore... tai amra 1st Element ke return korbo
+            else
+            {
+                $project_request=$project_request[0];
+            }
         }
+
 
 
         return view('projects.view_project',compact('project','comments', 'project_request'));
@@ -107,8 +120,22 @@ class ProjectsController extends Controller
 
         $comments=CommentSection::where('project_id','=', $id)->get();
 
+        $project_request=ProjectRequest::where('project_id','=',$id)
+                                            ->where('request_user_id','=',$current_user_id)
+                                            ->get();//LIST return kore... tai "0"th element access korar jonno [0] dibo
+        $project_request=$project_request[0];
+
+
         if($project->user_id == $current_user_id)
         {
+            $category=Category::all();
+
+            return view('projects.edit_project',compact('project','category','comments'));
+        }
+
+        else if($project_request->access_code==1)
+        {
+
             $category=Category::all();
 
             return view('projects.edit_project',compact('project','category','comments'));
@@ -126,7 +153,7 @@ class ProjectsController extends Controller
     {
         $data=Project::findorfail($id);
 
-        $data->user_id=auth()->user()->id;
+        //$data->user_id=auth()->user()->id;
         $data->project_name=$request->project_name;
         //$data->project_name=$request->name('project_name');
 
@@ -204,7 +231,7 @@ class ProjectsController extends Controller
         //return response()->json($data);
         if($data){
             //return Redirect()->back();
-            return Redirect('/projects.show.'.$data->user_id);
+            return Redirect('/projects.show.'.$id);
         }
 
 
@@ -239,12 +266,15 @@ class ProjectsController extends Controller
 
 
 
-
     public function search()
     {
         $search_text=$_GET['query'];
         $projects=Project::where('project_name','LIKE', '%'.$search_text.'%')->get();
-        return view('projects.all_project',compact('projects','search_text'));
+
+        $categories=Category::all();
+        $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
+
+        return view('projects.all_project',compact('projects','categories','project_latest','search_text'));
     }
 
 
@@ -281,7 +311,8 @@ class ProjectsController extends Controller
         $project_request=ProjectRequest::where('owner_id','=',$user->id)->get();
 
         //return response()->json($data);
-        return view('projects/my_project_requests',compact('user','project_request'));
+        return Redirect('/projects.show.'.$id);
+        //return view('projects/my_project_requests',compact('user','project_request'));
     }
 
 

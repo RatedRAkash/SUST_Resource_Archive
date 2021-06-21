@@ -353,7 +353,7 @@
                                 </div>
                                 @endforeach
 
-
+                                @if(!Auth::guest())
                                 <form action="{{url('projects.store_comment_section.'.$project->id)}}" method="post" enctype="multipart/form-data" id="msform" class="form-block">
                                     @csrf
                                         <div class="row">
@@ -375,9 +375,10 @@
                                                     <textarea class="form-input" name="comment_text" placeholder="Your text"></textarea>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary" >Submit</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                     </form>
+                                    @endif
 
                                 </div>
                             </div>
@@ -409,13 +410,15 @@
                             <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
 
                         <!-- Jei USER Access chaise -->
-                        @elseif(Auth::user()->id==$project_request->request_user_id)
-                            <!-- Access Paile ACCESS_CODE=1 tokon EDIT button dekhabo-->
-                            @if($project_request->access_code==1)
-                                <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
-                            <!-- Ei chara Wait for Access dekhabo -->
-                            @else
-                                <a><button type="submit" class="btn btn-sm btn-success">Wait for Access</button><a>
+                        @elseif($project_request!="[]")
+                            @if(Auth::user()->id==$project_request->request_user_id)
+                                <!-- Access Paile ACCESS_CODE=1 tokon EDIT button dekhabo-->
+                                @if($project_request->access_code==1)
+                                    <a href="{{url('projects.edit.'.$project->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                <!-- Ei chara Wait for Access dekhabo -->
+                                @else
+                                    <a><button type="submit" class="btn btn-sm btn-success">Wait for Access</button><a>
+                                @endif
                             @endif
 
 

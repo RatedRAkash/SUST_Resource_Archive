@@ -191,8 +191,8 @@
 
                                     <div class="card-body">
                                         <h5 class="card-title"><a href="{{url('projects.show.'.$row->id)}}">{{ $row->project_name }}</a></h5>
-                                        <p class="card-text">{{ $row->project_description }}</p>
-                                        <div class="read-more"><a href="{{url('users.show.'.$row->id)}}"><i class="icofont-arrow-right"></i> Read More</a></div>
+                                        <p class="card-text">{!!$row->project_description!!}</p>
+                                        <div class="read-more"><a href="{{url('projects.show.'.$row->id)}}"><i class="icofont-arrow-right"></i> Read More</a></div>
                                     </div>
 
                                 </div>

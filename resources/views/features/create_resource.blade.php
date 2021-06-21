@@ -25,10 +25,10 @@
 
     <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
-          <a class="nav-link" href="/resources">All Resources</a>
+          <a class="nav-link" href="">All Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Create New</a>
+          <a class="nav-link active" href="#">Create New Project</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">My Resources</a>
