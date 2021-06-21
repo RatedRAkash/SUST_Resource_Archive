@@ -419,12 +419,11 @@
 
       								<label class="fieldlabels">Title: *</label>
       								<input class="input-text" type="text" name="project_name" placeholder="Title of your researh/project" required/>
-      								<label class="fieldlabels">Description: *</label>
 
-
+                                    <label class="fieldlabels">Description: *</label>
                                     <div class="card-body">
 
-                                        <textarea name="content" class="form-control textarea-text" name="project_description" id="project_description" rows="5" placeholder="Tell us about your researh/project ..."></textarea>
+                                        <textarea class="form-control textarea-text" name="project_description" id="project_description" rows="5" placeholder="Tell us about your researh/project ..."></textarea>
                                             <script src="ckeditor/ckeditor.js"></script>
 
                                             <script>
@@ -448,7 +447,7 @@
       									</div>
       								</div>
       								<label class="fieldlabels">This workspace is for ___________ . *</label>
-      								<select type="text" name="option" class="selectpicker my-select" data-width="100%" aria-label="Default select example">
+      								<select type="text" name="option_project_or_thesis" class="selectpicker my-select" data-width="100%" aria-label="Default select example">
       								  <option disabled selected>Choose between thesis and project.</option>
       								  <option value="thesis">Thesis</option>
       								  <option value="project">Project</option>
@@ -469,16 +468,16 @@
                     </div><br>
 
 
-                        <label class="fieldlabels">Is this a personal work/academic work/contest work?*</label>
-                        <select type="text" name="option" class="selectpicker my-selec" onchange="active_field(this.value)" data-width="100%" aria-label="Default select example">
-                            <option disabled selected>Choose your answer.</option>
-                            <option value="Personal">Personal</option>
-                            <option value="Academic" >Academic</option>
-                            <option value="Contest">Contest</option>
-                        </select><br><br>
+                                <label class="fieldlabels">Is this a personal work/academic work/contest work?*</label>
+                                <select type="text" name="option_workspace_type" class="selectpicker my-selec" onchange="active_field(this.value)" data-width="100%" aria-label="Default select example">
+                                    <option disabled selected>Choose your answer.</option>
+                                    <option value="Personal">Personal</option>
+                                    <option value="Academic" >Academic</option>
+                                    <option value="Contest">Contest</option>
+                                </select><br><br>
 
 
-                      <div class="d-none" id="academic_option">
+                            <div class="d-none" id="academic_option">
       								<label class="fieldlabels">Course Details *</label>
       								<select id="partners" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
 
@@ -564,7 +563,7 @@
       							</div>
                       <br>
 
-                      <div id="project-partner">
+                                    <div id="project-partner">
       								<label class="fieldlabels">Add partners </label>
       								<select id="partners" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
 
@@ -573,6 +572,7 @@
                                       @endforeach
 
       								</select>
+
       								</div>
       								<br>
 

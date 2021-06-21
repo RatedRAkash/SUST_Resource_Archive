@@ -55,7 +55,7 @@ class UsersProfileController extends Controller
     {
         $user_profile=UserProfile::findorfail($id);
 
-        $image =$request->file('image');
+        $image =$request->file('imageFile');
 
         if($image)
         {

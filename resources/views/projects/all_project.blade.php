@@ -108,7 +108,7 @@
                         <h3 class="sidebar-title">Recent Posts</h3>
                         <div class="sidebar-item recent-posts">
 
-                        @foreach ($project_latest as $project)
+                        @foreach($project_latest as $project)
                             <div class="post-item clearfix">
                                 <img src="{{ URL::to($project->image) }}" alt="">
                                 <h4><a href="blog-single.html">{{$project->name}}</a></h4>
@@ -116,8 +116,7 @@
                             </div>
                         @endforeach
 
-                        </div><!-- End sidebar recent posts-->
-
+                        <!-- </div>
                         <h3 class="sidebar-title">Tags</h3>
                         <div class="sidebar-item tags">
                             <ul>
@@ -134,8 +133,8 @@
                                 <li><a href="#">Tips</a></li>
                                 <li><a href="#">Marketing</a></li>
                             </ul>
+                        </div> -->
 
-                        </div><!-- End sidebar tags-->
 
                     </div><!-- End sidebar -->
 

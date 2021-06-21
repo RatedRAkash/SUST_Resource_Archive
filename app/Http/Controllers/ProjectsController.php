@@ -47,6 +47,9 @@ class ProjectsController extends Controller
         $data->project_description=$request->project_description;
         $data->project_abstract=$request->project_abstract;
 
+        $data->project_or_thesis=$request->option_project_or_thesis;
+        $data->workspace_type=$request->option_workspace_type;
+
         $image =$request->file('image');
 
         if($image)
@@ -123,8 +126,12 @@ class ProjectsController extends Controller
         $project_request=ProjectRequest::where('project_id','=',$id)
                                             ->where('request_user_id','=',$current_user_id)
                                             ->get();//LIST return kore... tai "0"th element access korar jonno [0] dibo
-        $project_request=$project_request[0];
 
+
+        if($project_request != '[]')
+        {
+            $project_request=$project_request[0];
+        }
 
         if($project->user_id == $current_user_id)
         {

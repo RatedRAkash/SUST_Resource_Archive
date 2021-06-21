@@ -59,7 +59,7 @@
       <nav class="nav-menu float-right d-none d-lg-block">
         <ul>
           <li id="home"><a href="{{ url('/') }}">Home</a></li>
-          <li id="services"><a href="{{ url('/services') }}">Services</a></li>
+          <!-- <li id="services"><a href="{{ url('/services') }}">Services</a></li> -->
           <!-- <li id="blog"><a href="{{ url('/blog') }}">Single Blog</a></li> -->
           <li id="categories"><a href="{{ url('/categories') }}">Categories</a></li>
           <li id="projects"><a href="{{ url('/projects') }}">Projects</a></li>

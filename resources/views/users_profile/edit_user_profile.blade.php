@@ -99,7 +99,7 @@
 
                 <div class="image-preview" id="imagePreview">
                     <!-- <img src="" class="image-preview__image" alt="No image available" style="height:350px;"> -->
-                    <img src="{{ $user_profile->image }}" alt="Admin" class="rounded-circle" width="150">
+                    <img src="{{ $user_profile->image }}" alt="User" class="rounded-circle" width="150">
                     <span class="image-preview__default-text"></span>
                 </div>
 

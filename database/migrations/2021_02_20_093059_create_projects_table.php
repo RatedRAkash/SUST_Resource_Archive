@@ -17,6 +17,11 @@ class CreateProjectsTable extends Migration
             $table->longText('project_description')->nullable();
             $table->longText('project_abstract')->nullable();
 
+            $table->string('project_or_thesis')->nullable();
+            $table->string('workspace_type')->nullable();
+            $table->string('privacy_settings')->nullable();
+
+
             $table->string('paper_pdf_url')->nullable();
             $table->string('presentation_slide_url')->nullable();
             $table->string('link_to_dataset')->nullable();

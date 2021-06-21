@@ -145,13 +145,13 @@
             </div>
 
             <div class="form-group row">
-              <label for="registration_no" class="col-sm-4 col-form-label text-md-left"><i><b>Phone Number :</b></i></label>
+              <label for="phone_number" class="col-sm-4 col-form-label text-md-left"><i><b>Phone Number :</b></i></label>
 
               <div class="col-sm-8">
-                <input id="registration_no" type="text" class="form-control @error('registration_no') is-invalid @enderror" name="registration_no"
-                  value="{{ old('registration_no') }}" placeholder="Enter your registration number" required unique autocomplete="registration_no">
+                <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number"
+                  value="{{ old('registration_no') }}" placeholder="Enter your Phone Number">
 
-                @error('registration_no')
+                @error('phone_number')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>
@@ -159,30 +159,12 @@
               </div>
             </div>
 
-            <!--<div class="form-group row">
-              <label for="birthdate" class="col-sm-4 col-form-label text-md-left"><i><b>Birthdate :</b></i></label>
-
-              <div class="col dates input-group mb-3">
-                <input id="birthdate" type="text" class="form-control js-datepicker"  name="birthdate"
-                  value="{{ old('birthdate') }}" placeholder="Enter your birthdate" required autocomplete="birthdate">
-                  <div class="input-group-append">
-                    <span class="border-bottom border-dark"><i class="fas fa-calendar-alt" id="basic-addon2"></i></span>
-                  </div>
-
-                @error('birthdate')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-              </div>
-            </div>-->
-
             <div class="form-group row">
               <label for="password" class="col-sm-4 col-form-label text-md-left"><i><b>Password :</b></i></label>
 
               <div class="col-sm-8">
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                  name="password" placeholder="Enter Password(min: 8 digits)" required autocomplete="new-password">
+                  name="password" placeholder="Enter Password (min: 9 digits)" required autocomplete="new-password">
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">

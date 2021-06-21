@@ -18,6 +18,7 @@ class CreateUserProfilesTable extends Migration
 
             $table->integer('user_id');
             $table->string('name');
+            $table->string('username')->nullable();
             $table->string('email')->unique();
 
             $table->string('image')->nullable();
