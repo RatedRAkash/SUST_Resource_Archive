@@ -13,7 +13,7 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Categories</h2>
+                <h4>Categories</h4>
                 <ol>
                     @if(!Auth::guest())
                     <a href="{{url('/categories.create')}}" class="btn btn-success">Add Category</a>
@@ -80,13 +80,13 @@
                         <h3 class="sidebar-title">Search</h3>
                         <div class="sidebar-item search-form">
                             <form action="{{url('/categories.search')}}">
-                                    @if(@isset($search_text))
-                                        <input type="text" name="query" value="{{$search_text}}">
-                                        <button type="submit"><i class="icofont-search"></i></button>
-                                    @else
-                                        <input type="text" name="query">
-                                        <button type="submit"><i class="icofont-search"></i></button>
-                                    @endif
+                                @if(@isset($search_text))
+                                    <input type="text" name="query" value="{{$search_text}}">
+                                    <button type="submit"><i class="icofont-search"></i></button>
+                                @else
+                                    <input type="text" name="query">
+                                    <button type="submit"><i class="icofont-search"></i></button>
+                                @endif
                             </form>
                         </div><!-- End sidebar search formn-->
 

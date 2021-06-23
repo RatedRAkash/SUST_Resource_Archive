@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Resource Archive</title>
+  <title>SUST Resource Archive</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -63,9 +63,6 @@
           <!-- <li id="blog"><a href="{{ url('/blog') }}">Single Blog</a></li> -->
           <li id="categories"><a href="{{ url('/categories') }}">Categories</a></li>
           <li id="projects"><a href="{{ url('/projects') }}">Projects</a></li>
-          @if(!Auth::guest())
-            <li id="project_requests"><a href="{{url('/project_requests')}}">Project Requests</a></li>
-          @endif
 
           <li class="drop-down"><a href="">Drop Down</a>
             <ul>

@@ -55,6 +55,13 @@ Route::get('/project_requests', 'ProjectsController@show_the_user_project_reques
 //PROJECT_GIVE_ACCESS
 Route::get('/project_access/{request_user_id}/{owner_id}/access_code={access_code}', 'ProjectsController@give_user_access');
 
+//MY PROJECT
+Route::get('/projects.my_projects.{id}', 'ProjectsController@my_projects_show');
+//MORE FILTERS PROJECT
+Route::get('/projects.more_filter', 'ProjectsController@more_filter_projects');
+
+
+
 
 //Categories er Routes
 Route::get('/categories', 'CategoriesController@index');

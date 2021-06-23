@@ -19,8 +19,9 @@ class ProjectsController extends Controller
 
     public function index()
     {
-        $projects=Project::all();
+        $projects=Project::paginate(5);
         $categories=Category::all();
+
 
         $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
 
@@ -64,6 +65,11 @@ class ProjectsController extends Controller
             $data->image=$image_url;
         }
 
+        else
+        {
+            $data->image="default_images/project_no_image.png";
+        }
+
         $data->save();
 
 
@@ -95,7 +101,7 @@ class ProjectsController extends Controller
 
         //return response()->json($data);
 
-        return Redirect('/projects');
+        return Redirect('/projects.show.'.$data->id);
     }
 
 
@@ -207,6 +213,11 @@ class ProjectsController extends Controller
             $success=$image->move($upload_path,$image_full_name);
             $data->image=$image_url;
         }
+        else
+        {
+            $data->image="default_images/project_no_image.png";
+        }
+
 
 
         $file = $request->file('pdf_file');
@@ -307,8 +318,7 @@ class ProjectsController extends Controller
 
 
 
-
-
+    //NORMAL PROJECTS SEARCH
     public function search()
     {
         $search_text=$_GET['query'];
@@ -320,7 +330,7 @@ class ProjectsController extends Controller
         return view('projects.all_project',compact('projects','categories','project_latest','search_text'));
     }
 
-
+    //PROJECTS COMMENTS
     public function store_comment(Request $request, $id)
     {
 
@@ -336,7 +346,7 @@ class ProjectsController extends Controller
         return Redirect('/projects.show.'.$id);
     }
 
-
+    //PROJECTS REQUESTS
     public function store_project_request($id)
     {
         $project=Project::findorfail($id);
@@ -359,7 +369,6 @@ class ProjectsController extends Controller
     }
 
 
-
     public function show_the_user_project_request()
     {
         $user=User::findorfail(auth()->user()->id);
@@ -369,7 +378,7 @@ class ProjectsController extends Controller
         //return response()->json($data);
         if($user)
         {
-            return view('projects/my_project_requests',compact('user','project_request'));
+            return view('projects/project_requests_show',compact('user','project_request'));
         }
 
         else
@@ -379,6 +388,7 @@ class ProjectsController extends Controller
 
     }
 
+    //GIVE ACCESS TO PROJECT
     public function give_user_access($request_user_id,$owner_id,$access_code)
     {
         $project_request=ProjectRequest::where('owner_id','=',$owner_id)
@@ -390,6 +400,36 @@ class ProjectsController extends Controller
 
         return Redirect('/project_requests');
 
+    }
+
+
+    //MY PROJECTS SHOW
+    public function my_projects_show($id)
+    {
+        $user=User::findorfail($id);
+
+        $categories=Category::all();
+
+        $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
+
+        $projects=Project::where('user_id','=',$id)->paginate(5);//LIST return kore... tai "0"th element access korar jonno [0] dibo
+
+
+        return view('projects/my_project',compact('projects','categories','project_latest'));
+    }
+
+
+    //MORE FILTERS PROJECT
+    public function more_filter_projects()
+    {
+        $categories=Category::all();
+
+        $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
+
+        $projects=Project::paginate(5);//LIST return kore... tai "0"th element access korar jonno [0] dibo
+
+
+        return view('projects/more_filter_all_project',compact('projects','categories','project_latest'));
     }
 
 }

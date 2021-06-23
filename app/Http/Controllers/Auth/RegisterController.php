@@ -74,6 +74,7 @@ class RegisterController extends Controller
         $user_profile->username=$data['username'];
         $user_profile->email=$user->email;
         $user_profile->phone_number=$data['phone_number'];
+        $user_profile->image="default_images/user_profile_no_image.png";
 
         $user_profile->save();
 

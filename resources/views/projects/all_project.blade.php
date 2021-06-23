@@ -1,28 +1,33 @@
-@extends('layouts.mainLayout')
+@extends('projects.project_layout')
 
-@section('content')
+@if(!Auth::guest())
+    @section('content_project_navbar')
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+        <a class="nav-link active" href="{{ url('/projects') }}">All Projects</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{url('/projects.create')}}">Create Project</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{url('/projects.my_projects.'.Auth::user()->id)}}">My Project</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{url('/project_requests')}}">Project Requests</a>
+        </li>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{url('/projects.more_filter')}}">More Filtering</a>
+        </li>
+    </ul>
+    @endsection
+@endif
 
-<main id="main">
+@section('content_project')
 
     <script type="text/javascript">
         document.getElementById('projects').className = "active";
     </script>
-
-    <!-- ======= Blog Section ======= -->
-    <section class="breadcrumbs">
-        <div class="container">
-
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>All Projects</h2>
-
-                <ol>
-                    @if(!Auth::guest())
-                    <a href="{{url('/projects.create')}}" class="btn btn-success">Create Project</a>
-                    @endif
-                </ol>
-            </div>
-        </div>
-    </section><!-- End Blog Section -->
 
     <!-- ======= Blog Section ======= -->
     <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -32,7 +37,7 @@
 
                 <div class="col-lg-8 entries">
 
-                @foreach ($projects as $row)
+                @foreach($projects as $row)
                     <article class="entry">
 
                         <div class="entry-img">
@@ -68,13 +73,19 @@
 
                     <div class="blog-pagination">
                         <ul class="justify-content-center">
+                        {{$projects->links()}}
+                        </ul>
+                    </div>
+
+                    <!-- <div class="blog-pagination">
+                        <ul class="justify-content-center">
                             <li class="disabled"><i class="icofont-rounded-left"></i></li>
                             <li><a href="#">1</a></li>
                             <li class="active"><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                             <li><a href="#"><i class="icofont-rounded-right"></i></a></li>
                         </ul>
-                    </div>
+                    </div> -->
 
                 </div><!-- End blog entries list -->
 
@@ -116,25 +127,6 @@
                             </div>
                         @endforeach
 
-                        <!-- </div>
-                        <h3 class="sidebar-title">Tags</h3>
-                        <div class="sidebar-item tags">
-                            <ul>
-                                <li><a href="#">App</a></li>
-                                <li><a href="#">IT</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Mac</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Office</a></li>
-                                <li><a href="#">Creative</a></li>
-                                <li><a href="#">Studio</a></li>
-                                <li><a href="#">Smart</a></li>
-                                <li><a href="#">Tips</a></li>
-                                <li><a href="#">Marketing</a></li>
-                            </ul>
-                        </div> -->
-
 
                     </div><!-- End sidebar -->
 
@@ -145,7 +137,5 @@
         </div><!-- End .container -->
 
     </section><!-- End Blog Section -->
-
-</main><!-- End #main -->
 
 @endsection
