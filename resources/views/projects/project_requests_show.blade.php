@@ -50,9 +50,10 @@
 
         @foreach ($project_request as $row)
         <tr>
-            <td>{{ $row->id }}</td>
-            <td>{{ $row->project->project_name }}</td>
-            <td>{{ $row->user->name }}</td>
+
+            <td><a href="{{url('projects.show.'.$row->id)}}">{{ $row->id }}</a></td>
+            <td><a href="{{url('projects.show.'.$row->id)}}">{{ $row->project->project_name }}</a></td>
+            <td><a href="{{url('users_profile.show.'.$row->request_user_id)}}">{{ $row->user->name }}</a></td>
             <td>
                 @if(!Auth::guest())
                     @if(Auth::user()->id==$row->owner_id)

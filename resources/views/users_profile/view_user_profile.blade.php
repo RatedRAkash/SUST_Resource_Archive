@@ -73,7 +73,13 @@
     <section class="breadcrumbs">
         <div class="container">
 
-            <h2 class="card-header">My Profile <small class="pull-right"><a class="btn btn-sm btn-success float-right" href="{{url('users_profile.edit.'.$user_profile->id)}}">Edit</a></small></h2>
+            <h2 class="card-header">My Profile
+            <small class="pull-right">
+                @if(Auth::user()->id == $user_profile->id)
+                    <a class="btn btn-sm btn-success float-right" href="{{url('users_profile.edit.'.$user_profile->id)}}">Edit</a>
+                @endif
+            </small>
+            </h2>
 
         </div>
     </section><!-- End Blog Section -->
@@ -89,8 +95,8 @@
                       <h4>{{$user_profile->name}}</h4>
                       <p class="text-secondary mb-1">{{$user_profile->profession}}</p>
                       <p class="text-muted font-size-sm">{{$user_profile->address}}</p>
-                      <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+                      <a href="{{url('/project.my_favorites')}}"><button class="btn btn-primary">Favorites</button></a>
+                      <!-- <button class="btn btn-outline-primary">Message</button> -->
                     </div>
                   </div>
                 </div>

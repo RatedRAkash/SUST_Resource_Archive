@@ -57,8 +57,14 @@ Route::get('/project_access/{request_user_id}/{owner_id}/access_code={access_cod
 
 //MY PROJECT
 Route::get('/projects.my_projects.{id}', 'ProjectsController@my_projects_show');
+
 //MORE FILTERS PROJECT
 Route::get('/projects.more_filter', 'ProjectsController@more_filter_projects');
+Route::get('/projects.more_filter.search', 'ProjectsController@search_more_filter_projects');
+Route::get('/projects.more_filter.search_side_bar', 'ProjectsController@search_side_bar_more_filter_projects');
+Route::get('/projects.more_filter.order_by={key}', 'ProjectsController@order_by_more_filter_projects');
+
+
 
 //PROJECT_FAVORITES
 Route::post('/projects.project_favorite.{id}', 'ProjectsController@store_project_favorite');

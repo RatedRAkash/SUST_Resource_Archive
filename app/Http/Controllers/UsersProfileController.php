@@ -40,15 +40,17 @@ class UsersProfileController extends Controller
 
         $current_user_id=auth()->user()->id;
 
-        if($user_profile->id==$current_user_id)
-        {
-            return view('users_profile.view_user_profile',compact('user_profile','projects'));
-        }
+        return view('users_profile.view_user_profile',compact('user_profile','projects'));
 
-        else
-        {
-            return view('pages.not_authorized');
-        }
+        // if($user_profile->id==$current_user_id)
+        // {
+        //     return view('users_profile.view_user_profile',compact('user_profile','projects'));
+        // }
+
+        // else
+        // {
+        //     return view('pages.not_authorized');
+        // }
 
     }
 

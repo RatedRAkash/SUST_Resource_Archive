@@ -26,8 +26,17 @@ class ProjectsController extends Controller
 
         $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
 
-        $favorites=Favorite::where('user_id','=',auth()->user()->id)
+        if(!Auth::guest())
+        {
+            $favorites=Favorite::where('user_id','=',auth()->user()->id)
                                             ->get();//LIST return kore... tai "0"th element access korar jonno [0] dibo
+        }
+
+        else
+        {
+            $favorites=array();
+        }
+
 
         //return response()->json($project);
         return view('projects.all_project',compact('projects','categories','project_latest','favorites'));
@@ -342,7 +351,7 @@ class ProjectsController extends Controller
     public function search()
     {
         $search_text=$_GET['query'];
-        $projects=Project::where('project_name','LIKE', '%'.$search_text.'%')->get();
+        $projects=Project::where('project_name','LIKE', '%'.$search_text.'%')->paginate(5);
 
         $categories=Category::all();
         $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
@@ -444,12 +453,66 @@ class ProjectsController extends Controller
     {
         $categories=Category::all();
 
+        $users=User::all();
+
         $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
 
         $projects=Project::all();//LIST return kore... tai "0"th element access korar jonno [0] dibo
 
+        return view('projects/more_filter_all_project',compact('users','projects','categories','project_latest'));
+    }
 
-        return view('projects/more_filter_all_project',compact('projects','categories','project_latest'));
+
+
+    public function search_more_filter_projects()
+    {
+        $categories=Category::all();
+        $users=User::all();
+        $projects=Project::all();
+
+        $search_text=$_GET['query'];
+
+        $projects=Project::where('project_name','LIKE', '%'.$search_text.'%')->get();
+
+        $project_latest=Project::orderBy('id', 'desc')->take(7)->get();
+
+        return view('projects/more_filter_all_project',compact('users','projects','categories','project_latest','search_text'));
+    }
+
+
+
+    public function search_side_bar_more_filter_projects()
+    {
+        $search_category="";
+        $search_user="";
+
+        if(isset($_GET['search_category']))
+        {
+            $search_category=$_GET['search_category'];
+            $projects=Project::where('category_id','=', $search_category)->get();
+        }
+
+        if(isset($_GET['search_user']))
+        {
+            $search_user=$_GET['search_user'];
+            $projects=Project::where('user_id','=', $search_user)->get();
+        }
+
+        $users=User::all();
+        $categories=Category::all();
+
+        return view('projects/more_filter_all_project',compact('users','projects','categories','search_category','search_user'));
+    }
+
+    public function order_by_more_filter_projects($key)
+    {
+        $projects=Project::all();
+        $projects=$projects->sortBy($key);
+
+        $users=User::all();
+        $categories=Category::all();
+
+        return view('projects/more_filter_all_project',compact('users','projects','categories'));
     }
 
 

@@ -129,83 +129,48 @@
             <hr>
 
             <!-- BEGIN FILTER BY CATEGORY -->
-            <h4>By category:</h4>
-            <label class="fieldlabels">Select the category</label>
-            <select class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%">
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-            </select>
+            <form action="{{url('projects.more_filter.search_side_bar')}}">
+                <h4>By Category:</h4>
+                <label class="fieldlabels">Select the Category</label>
+                <select class="selectpicker my-select" name="search_category" data-live-search="true" data-width="100%">
+                    <option disabled selected>Nothing Selected</option>
+                    @foreach ($categories as $row)
+                        <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                    @endforeach
+                </select>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+            </form>
 
             <!-- END FILTER BY CATEGORY -->
 
             <div class="padding"></div>
 
+
+
+
             <!-- BEGIN FILTER BY Authors -->
-            <h4>By author:</h4>
-            <label class="fieldlabels">Select the Author</label>
-            <select class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%">
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-            </select>
-
+            <form action="{{url('projects.more_filter.search_side_bar')}}">
+                <h4>By User:</h4>
+                <label class="fieldlabels">Select the User</label>
+                <select class="selectpicker my-select" name="search_user" data-live-search="true" data-width="100%">
+                    <option disabled selected>Nothing Selected</option>
+                    @foreach ($users as $row)
+                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                    @endforeach
+                </select>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+            </form>
             <!-- END FILTER BY Authors -->
 
 
             <div class="padding"></div>
-
-            <!-- BEGIN FILTER BY Course -->
-            <h4>By course:</h4>
-            <label class="fieldlabels">Select the Courses</label>
-            <select class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%">
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-                <option>Onions</option>
-            </select>
-
-            <!-- END FILTER BY Course -->
-
 
 
 
             <div class="padding"></div>
 
             <!-- BEGIN FILTER BY DATE -->
-            <h4>By date:</h4>
+            <!-- <h4>By date:</h4>
             From
             <div class="input-group date form_date" data-date="2014-06-14T05:25:07Z" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1">
               <input type="text" class="form-control">
@@ -218,39 +183,55 @@
               <input type="text" class="form-control">
               <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
             </div>
-            <input type="hidden" id="dtp_input2" value="">
+            <input type="hidden" id="dtp_input2" value=""> -->
             <!-- END FILTER BY DATE -->
 
             <div class="padding"></div>
 
             <!-- BEGIN FILTER BY Rating -->
-            <h4>By rating:</h4>
+            <!-- <h4>By rating:</h4>
             Between <div id="price1">0</div> to <div id="price2">5</div>
             <div class="slider-primary">
               <div class="slider slider-horizontal" style="width: 152px;"><div class="slider-track"><div class="slider-selection" style="left: 30%; width: 50%;"></div><div class="slider-handle round" style="left: 30%;"></div><div class="slider-handle round" style="left: 80%;"></div></div><div class="tooltip top hide" style="top: -30px; left: 50.1px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">300 : 800</div></div><input type="text" class="slider" value="" data-slider-min="0" data-slider-max="1000" data-slider-step="1" data-slider-value="[300,800]" data-slider-tooltip="hide"></div>
-            </div>
+            </div> -->
             <!-- END FILTER BY Rating -->
-
-
-
-
 
 
           </div>
           <!-- END FILTERS -->
+
+
+
+
           <!-- BEGIN RESULT -->
           <div class="col-md-9">
             <h2><i class="fa fa-file-o"></i> Projects </h2>
             <hr>
             <!-- BEGIN SEARCH INPUT -->
-            <div class="input-group">
-              <input type="text" class="form-control" value="web development">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
+            <form action="{{url('projects.more_filter.search')}}">
+                @if(@isset($search_text))
+                <div class="input-group">
+                    <input type="text" class="form-control" name="query" value="{{$search_text}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+                @else
+                <div class="input-group">
+                    <input type="text" class="form-control" name="query">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+                @endif
+            </form>
+
             <!-- END SEARCH INPUT -->
-            <p>Showing all results matching "web development"</p>
+            @if(@isset($search_text))
+                <p>Showing all results matching "{{$search_text}}"</p>
+            @else
+                <p>Results Will be shown here by Keyword</p>
+            @endif
 
             <div class="padding"></div>
 
@@ -262,10 +243,10 @@
                     Order by
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Name</a></li>
-                    <li><a href="#">Date</a></li>
-                    <li><a href="#">View</a></li>
-                    <li><a href="#">Rating</a></li>
+                    <li><a href="{{URL::to('/projects.more_filter.order_by='.'project_name')}}">Name</a></li>
+                    <li><a href="{{URL::to('/projects.more_filter.order_by='.'category_id')}}">Category Name</a></li>
+                    <li><a href="{{URL::to('/projects.more_filter.order_by='.'updated_at')}}">Updated At</a></li>
+                    <li><a href="{{URL::to('/projects.more_filter.order_by='.'created_at')}}">Created At</a></li>
                   </ul>
                 </div>
               </div>
@@ -273,8 +254,7 @@
 
               <div class="col-md-6 text-right">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default active"><i class="fa fa-list"></i></button>
-                  <button type="button" class="btn btn-default"><i class="fa fa-th"></i></button>
+                  <button type="submit" class="btn btn-default"><i class="fa fa-list"></i></button>
                 </div>
               </div>
             </div>
@@ -312,17 +292,6 @@
             </div>
             <!-- END TABLE RESULT -->
 
-            <!-- BEGIN PAGINATION -->
-            <ul class="pagination">
-              <li class="disabled"><a href="#">«</a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">»</a></li>
-            </ul>
-            <!-- END PAGINATION -->
           </div>
           <!-- END RESULT -->
         </div>
