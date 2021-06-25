@@ -19,6 +19,10 @@
         <li class="nav-item">
         <a class="nav-link active" href="{{url('/projects.more_filter')}}">More Filtering</a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{url('/project.my_favorites')}}">Favorites</a>
+        </li>
+
     </ul>
     @endsection
 @endif
@@ -28,7 +32,7 @@
 @section('content_project')
 
     <script type="text/javascript">
-        document.getElementById('about').className = "active";
+        document.getElementById('projects').className = "active";
     </script>
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -279,59 +283,29 @@
             <div class="table-responsive">
               <table class="table table-hover">
                 <tbody>
+
+                @foreach ($projects as $row)
+                <a href="{{url('projects.show.'.$row->id)}}">
                 <tr>
-                  <td class="number text-center">1</td>
-                  <td class="image"><br><img src="https://via.placeholder.com/400x300/FF8C00" alt=""></td>
+                  <td class="image"><br><img src="{{ URL::to($row->image) }}" class="img-fluid" style="width:100px;height:100px;"></td>
                   <td class="product">
-                      <h4><b><a href="/open_resource">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia reiciendis reiciendis quia</a></b></h4>
-                      <img src="assets/img/users-solid.svg" class="img-fluid" alt="" style="width:20px;height:20px;">
-                      <b>Member1(2016331000), Member2(2016331000), Teacher1(Supervisor)</b>
+                      <h4><b><a href="{{url('projects.show.'.$row->id)}}">{{ $row->project_name }}</a></b></h4>
+                      @if($row->partner_id != null)
+                        <b>Owner ({{ $row->user->name }}) , Partner ({{$row->partner->name}}), Supervisor ({{$row->supervisor->name}})</b>
+                      @else
+                        <b>Owner ({{ $row->user->name }}) , Supervisor ({{$row->supervisor->name}})</b>
+                      @endif
                       <br><br>
-                      <p style="text-align: justify"> provides helpful ways to solve different challenges on building responsive website templates through its powerful and robust set of components.
-                      Creating a bootstrap theme without reinventing the base HTML, CSS and JavaScript for each project is the main feature of the framework. ...
-                      <br><b>May 20, 2020</b></p>
+                      <p style="text-align: justify"> {!! $row->project_description !!}
+                      <br><b>{{ $row->created_at }}</b></p>
                   </td>
 
                   <td class="rate text-right">
                       <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
                     </td>
                 </tr>
-
-                <tr>
-                  <td class="number text-center">2</td>
-                  <td class="image"><br><img src="https://via.placeholder.com/400x300/FF8C00" alt=""></td>
-                  <td class="product">
-                      <h4><b>Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia reiciendis reiciendis quia</b></h4>
-                      <img src="assets/img/users-solid.svg" class="img-fluid" alt="" style="width:20px;height:20px;">
-                      <b>Member1(2016331000), Member2(2016331000), Teacher1(Supervisor)</b>
-                      <br><br>
-                      <p style="text-align: justify"> provides helpful ways to solve different challenges on building responsive website templates through its powerful and robust set of components.
-                      Creating a bootstrap theme without reinventing the base HTML, CSS and JavaScript for each project is the main feature of the framework. ...
-                      <br><b>May 20, 2020</b></p>
-                  </td>
-
-                  <td class="rate text-right">
-                      <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="number text-center">3</td>
-                    <td class="image"><br><img src="https://via.placeholder.com/400x300/FF8C00" alt=""></td>
-                    <td class="product">
-                        <h4><b>Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia reiciendis reiciendis quia</b></h4>
-                        <img src="assets/img/users-solid.svg" class="img-fluid" alt="" style="width:20px;height:20px;">
-                        <b>Member1(2016331000), Member2(2016331000), Teacher1(Supervisor)</b>
-                        <br><br>
-                        <p style="text-align: justify"> provides helpful ways to solve different challenges on building responsive website templates through its powerful and robust set of components.
-                        Creating a bootstrap theme without reinventing the base HTML, CSS and JavaScript for each project is the main feature of the framework. ...
-                        <br><b>May 20, 2020</b></p>
-                    </td>
-
-                    <td class="rate text-right">
-                        <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
-                      </td>
-                  </tr>
+                </a>
+                @endforeach
 
 
               </tbody></table>

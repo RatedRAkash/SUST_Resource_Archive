@@ -31,5 +31,20 @@ class Project extends Model
         return $this->hasMany(ProjectRequest::class);
     }
 
+    public function partner()
+    {
+        return $this->belongsTo('App\User','partner_id', 'id');
+    }
+
+    public function supervisor()
+    {
+        return $this->belongsTo('App\User','supervisor_id', 'id');
+    }
+
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
 
 }

@@ -17,7 +17,10 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return view('pages.home');
+        $categories=Category::all();
+        $projects = Project::orderBy('id', 'desc')->take(5)->get();
+
+        return view('pages.home',compact('categories','projects'));
     }
 
     public function about()

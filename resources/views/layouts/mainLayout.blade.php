@@ -64,11 +64,8 @@
           <li id="categories"><a href="{{ url('/categories') }}">Categories</a></li>
           <li id="projects"><a href="{{ url('/projects') }}">Projects</a></li>
 
-          <li class="drop-down"><a href="">Drop Down</a>
+          <!-- <li class="drop-down"><a href="">Drop Down</a>
             <ul>
-              @if(!Auth::guest())
-                <li><a href="{{url('/users_profile.show.'.Auth::user()->id)}}">My Profile</a></li>
-              @endif
               <li class="drop-down"><a href="#">Drop Down 2</a>
                 <ul>
                   <li><a href="#">Deep Drop Down 1</a></li>
@@ -83,6 +80,7 @@
               <li><a href="#">Drop Down 5</a></li>
             </ul>
           </li>
+           -->
           <li id="about"><a href="{{ url('/about') }}">About Us</a></li>
           <li id="contact"><a href="{{ url('/contact') }}">Contact Us</a></li>
           @guest
@@ -96,7 +94,7 @@
           @endif
 
           @else
-          <li class="drop-down"><a href="{{url('/users_profile.show.'.Auth::user()->id)}}">{{ Auth::user()->name }}</a>
+          <li class="drop-down"><a id="users" href="{{url('/users_profile.show.'.Auth::user()->id)}}">{{ Auth::user()->name }}</a>
 
           <ul>
                   <li><a href="{{url('/users_profile.show.'.Auth::user()->id)}}">My Profile</a></li>
@@ -115,7 +113,7 @@
                   <li><a href="#">Deep Drop Down 2</a></li>
 
             </ul>
-            </li>
+          </li>
 
 
 

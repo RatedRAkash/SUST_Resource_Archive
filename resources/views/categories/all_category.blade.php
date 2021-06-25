@@ -35,8 +35,6 @@
                 <div class="col-lg-8 entries">
 
 
-
-
                 <!-- ======= Category Details Section ======= -->
                     <section class="service-details">
 

@@ -84,10 +84,10 @@
 
 
 
-				<div class="card" id="resource-title">
+				<div class="card" id="project-title">
 
 
-                    <h5 class="card-header">Thesis/Project Title </h5>
+                    <h5 class="card-header">{{ $project->project_or_thesis }} Title</h5>
 
 					<div class="card-body">
 						<h5 class="card-title" name="project_name" id="div_project_name">{{ $project->project_name }}</h5>
@@ -109,7 +109,7 @@
 
 				<div class="card text-dark bg-light mb-3" id="description">
 
-                    <h5 class="card-header"> Description</h5>
+                    <h5 class="card-header">Description</h5>
 
                     <div class="card-body" id="div_project_description">
 						<p class="card-text" >
@@ -122,9 +122,9 @@
 
 
 
-				<div class="card text-dark bg-light mb-3" id="section-abstract">
+				<div class="card text-dark bg-light mb-3" id="section-1">
 
-                    <h5 class="card-header"> Abstract</h5>
+                    <h5 class="card-header">Abstract</h5>
 
                     <div class="card-body" id="div_project_abstract">
 						<p class="card-text" >
@@ -137,7 +137,7 @@
 
 
 
-            <div class="card text-dark bg-light mb-3" id="section-paper-pdf">
+            <div class="card text-dark bg-light mb-3" id="section-2">
 
                 <h5 class="card-header">Full Paper Pdf</h5>
 
@@ -154,7 +154,7 @@
 			</div>
 
 
-		<div class="card text-dark bg-light mb-3" id="section-presentation-slide">
+		<div class="card text-dark bg-light mb-3" id="section-3">
 
                 <h5 class="card-header">Presentation Slide</h5>
 
@@ -173,39 +173,30 @@
 				</div>
 
 
-				<div class="card text-dark bg-light mb-3" id="code-link">
-					<h5 class="card-header">Code Link</h5>
+				<!-- CODE LINK SLIDE -->
+                <div class="card text-dark bg-light mb-3" id="section-4">
 
-					<div class="card-body">
+                    <h5 class="card-header">Code Link</h5>
+
+					<div class="card-body" id="div_project_code_link_url">
 						<p class="card-text">
-							Link is here...
+
+                        @if($project->link_to_dataset != null)
+                            <span><a href="https://{{$project->link_to_dataset}}" target="_blank"><input type="text" name="textbox_link_to_dataset" id="textbox_link_to_dataset" readonly=true class="form-control" style="color:blue" value="{{$project->link_to_dataset}}"></a></span>
+                        @else
+                            <span><input type="text" name="textbox_link_to_dataset" id="textbox_link_to_dataset" readonly=true class="form-control" value="No Link has been added"></span>
+                        @endif
+
 						</p>
+
 					</div>
 
-					<div class="card-footer">
-						<b>Resources:</b>
-						<br>
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-									<img src="exe_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									App1.exe &nbsp;(<i>Executable  File</i>)
-								</div>
-								<div class="col">
-
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 
 
 
                 <!-- COMMENT SECTION START -->
-                <div class="card text-dark bg-light mb-3" id="section-comment">
+                <div class="card text-dark bg-light mb-3" id="section-5">
 					<h5 class="card-header">Comments</h5>
 
 					<div class="card-body">
@@ -437,7 +428,7 @@
                         <br>
 
 						<div id="list-example" class="list-group">
-						  <a class="list-group-item list-group-item-action" href="#resource-title">Thesis/Project Title</a>
+						  <a class="list-group-item list-group-item-action" href="#resource-title">{{ $project->project_or_thesis }} Title</a>
 						  <a class="list-group-item list-group-item-action" href="#abstract">Description</a>
 
 						<div class="accordion" id="accordionExample">

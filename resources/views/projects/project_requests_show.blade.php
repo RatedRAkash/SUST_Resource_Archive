@@ -19,6 +19,9 @@
         <li class="nav-item">
         <a class="nav-link" href="{{url('/projects.more_filter')}}">More Filtering</a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{url('/project.my_favorites')}}">Favorites</a>
+        </li>
     </ul>
     @endsection
 @endif

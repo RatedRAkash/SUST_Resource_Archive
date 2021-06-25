@@ -60,7 +60,9 @@ Route::get('/projects.my_projects.{id}', 'ProjectsController@my_projects_show');
 //MORE FILTERS PROJECT
 Route::get('/projects.more_filter', 'ProjectsController@more_filter_projects');
 
-
+//PROJECT_FAVORITES
+Route::post('/projects.project_favorite.{id}', 'ProjectsController@store_project_favorite');
+Route::get('/project.my_favorites', 'ProjectsController@show_the_user_project_favorites');
 
 
 //Categories er Routes

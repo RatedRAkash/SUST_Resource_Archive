@@ -5,7 +5,7 @@
 <main id="main">
 
     <script type="text/javascript">
-        document.getElementById('about').className = "active";
+        document.getElementById('projects').className = "active";
     </script>
 
     <!-- ======= About Us Section ======= -->
@@ -23,8 +23,6 @@
                 </ol>
 
             </div>
-
-
 
         </div>
     </section><!-- End About Us Section -->

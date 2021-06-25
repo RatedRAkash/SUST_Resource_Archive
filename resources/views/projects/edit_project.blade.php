@@ -95,7 +95,7 @@
                 <br>
 
                 <div>
-                    <h5 class="card-header">Project Image<small class="pull-right"><button type="button" id="edit_button_image" onclick="myFunction_image(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+                    <h5 class="card-header">Image of {{ $project->project_or_thesis }}<small class="pull-right"><button type="button" id="edit_button_image" onclick="myFunction_image(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
                     <div class="card-body" id="div_project_image" style="display: none">
                         <input type="file" name="imageFile" id="imageFile">
@@ -178,7 +178,7 @@
 
                     </script>
 
-                    <h5 class="card-header">Thesis/Project Title <small class="pull-right"><button type="button" id="edit_button_title" onclick="changeText_title(); myFunction_title(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+                    <h5 class="card-header">{{ $project->project_or_thesis }} Title<small class="pull-right"><button type="button" id="edit_button_title" onclick="changeText_title(); myFunction_title(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
 					<div class="card-body">
 						<h5 class="card-title" name="project_name" id="div_project_name">{{ $project->project_name }}</h5>
@@ -188,8 +188,6 @@
                         <p class="card-text" name="project_created_at"> <b>Started from:</b> {{ $project->created_at }} <br> <b>Last updated:</b> {{ $project->updated_at }} </p>
 
 					</div>
-
-
 
 
 
@@ -273,7 +271,7 @@
 
 
 					<div class="card-footer" id="Editor_ID_description" style="display: none">
-						<b>Resources:</b>
+						<b>Change Description:</b>
 						<br>
 
                         <div class="card-body">
@@ -287,28 +285,14 @@
 
                         </div>
 
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-									<img src="img_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Image1.png &nbsp;(<i>Image File</i>)
-								</div>
 
-								<div class="col">
-
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 
 
 
 
-				<div class="card text-dark bg-light mb-3" id="section-abstract">
+				<div class="card text-dark bg-light mb-3" id="section-1">
                     <script>
                         function changeText_abstract()
                         {
@@ -350,20 +334,7 @@
 
                         </div>
 
-                        <div class="card text-white bg-dark mb-3">
-                            <div class="row">
-                                <div class="col col-sm-11">
-                                    <img src="pdf_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-                                    Description &nbsp;(<i>Description</i>)
-                                </div>
-                                <div class="col">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
 					</div>
 
 				</div>
@@ -372,7 +343,7 @@
 
 
 
-                <div class="card text-dark bg-light mb-3" id="section-paper-pdf">
+                <div class="card text-dark bg-light mb-3" id="section-2">
                     <script>
                         function change_paper_pdf()
                         {
@@ -390,7 +361,7 @@
                     }
                     </script>
 
-                <h5 class="card-header"> Full Paper <small class="pull-right"><button type="button" id="edit_button_pdf" onclick="myFunction_change_paper_pdf(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+                <h5 class="card-header">Full Paper<small class="pull-right"><button type="button" id="edit_button_pdf" onclick="myFunction_change_paper_pdf(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
                         <div class="card-body" id="div_paper_pdf_url">
                             <p class="card-text">
@@ -431,19 +402,7 @@
                             <br><br><br>
                         </div>
 
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-                                <img src="pdf_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Paper.pdf &nbsp;(<i>Pdf File</i>)
-								</div>
-								<div class="col">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
+
 					</div>
 
 				</div>
@@ -451,7 +410,7 @@
 
 
             <!-- PRESENTATION SLIDE -->
-		    <div class="card text-dark bg-light mb-3" id="section-presentation-slide">
+		    <div class="card text-dark bg-light mb-3" id="section-3">
                 <script>
                     function change_presentation_slide()
                     {
@@ -469,7 +428,7 @@
                 }
                 </script>
 
-                <h5 class="card-header"> Presentation Slide <small class="pull-right"><button type="button" id="edit_button_presentation" onclick="myFunction_presentation_slide(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+                <h5 class="card-header">Presentation Slide<small class="pull-right"><button type="button" id="edit_button_presentation" onclick="myFunction_presentation_slide(); changeButtonText(this.id);" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
 
 					<div class="card-body" id="div_project_presentation_slide_url">
 						<p class="card-text">
@@ -511,59 +470,84 @@
                             <br><br><br>
                         </div>
 
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-                                <img src="presentation_icon.jpg" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									Presentation1.ppt &nbsp;(<i>Presentation File</i>)
-								</div>
 
-								<div class="col">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
 					</div>
 
 				</div>
 
 
-                <!-- CODE LINK -->
-				<div class="card text-dark bg-light mb-3" id="code-link">
-					<h5 class="card-header">Code Link<small class="pull-right"><button type="button" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+            <!-- CODE LINK SLIDE -->
+		    <div class="card text-dark bg-light mb-3" id="section-4">
+                <script>
+                    function change_code_link_text()
+                    {
+                        document.getElementById("textbox_link_to_dataset").value = document.getElementById("link_to_dataset").value;
+                    }
 
-					<div class="card-body">
+                    function myFunction_change_code_link_slide() {
+                    var x = document.getElementById("code_link_container");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    }
+                    else {
+                        x.style.display = "none";
+                    }
+                }
+                </script>
+
+
+                <h5 class="card-header"> Code Link <small class="pull-right"><button type="button" id="edit_button_code_link" onclick="myFunction_change_code_link_slide(); changeButtonText(this.id); change_code_link_text()" class="btn btn-sm btn-success float-right">Edit</button></small></h5>
+
+					<div class="card-body" id="div_project_code_link_url">
 						<p class="card-text">
-							Link is here...
+
+                        @if($project->link_to_dataset != null)
+                            <span><a href="https://{{$project->link_to_dataset}}" target="_blank"><input type="text" name="textbox_link_to_dataset" id="textbox_link_to_dataset" readonly=true class="form-control" style="color:blue" value="{{$project->link_to_dataset}}"></a></span>
+                        @else
+                            <span><input type="text" name="textbox_link_to_dataset" id="textbox_link_to_dataset" readonly=true class="form-control" value="No Link has been added"></span>
+                        @endif
+
 						</p>
+
 					</div>
 
-					<div class="card-footer">
-						<b>Resources:</b>
+
+					<div class="card-footer" id="code_link_container" style="display: none">
+						<b>Edit Code Link:</b>
 						<br>
-						<div class="card text-white bg-dark mb-3">
-							<div class="row">
-								<div class="col col-sm-11">
-									<img src="exe_icon.png" class="rounded img-fluid" alt="No image available" style="width:50px;height:50px;">
-									App1.exe &nbsp;(<i>Executable  File</i>)
-								</div>
-								<div class="col">
 
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-										<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-									</svg>
-								</div>
-							</div>
-						</div>
+                        <div class="container">
+                            @csrf
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+
+                                <br>
+
+                                <div class="form-group">
+                                    <div class="control">
+                                        <span><input type="text" name="link_to_dataset" id="link_to_dataset" class="form-control" value="{{$project->link_to_dataset}}"></span>
+                                    </div>
+                                </div>
+
+                            <br>
+                        </div>
+
 					</div>
+
 				</div>
+
 
 
 
                 <!-- COMMENT SECTION BEGIN -->
-                <div class="card text-dark bg-light mb-3" id="section-comment-section">
+                <div class="card text-dark bg-light mb-3" id="section-5">
 					<h5 class="card-header">Comments</h5>
 
 					<div class="card-body">
@@ -703,7 +687,7 @@
 
 
 
-                            <div class="card text-dark bg-light mb-3" id="section-5">
+                            <div class="card text-dark bg-light mb-3" id="section-comment">
                             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
                             <div class="container">
                             <div class="be-comment-block">
@@ -759,7 +743,7 @@
                         <br>
 
 						<div id="list-example" class="list-group">
-						  <a class="list-group-item list-group-item-action" href="#resource-title">Thesis/Project Title</a>
+						  <a class="list-group-item list-group-item-action" href="#resource-title">{{ $project->project_or_thesis }} Title</a>
 						  <a class="list-group-item list-group-item-action" href="#abstract">Description</a>
 
 						<div class="accordion" id="accordionExample">

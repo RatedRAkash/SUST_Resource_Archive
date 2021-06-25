@@ -19,6 +19,9 @@
         <li class="nav-item">
         <a class="nav-link" href="{{url('/projects.more_filter')}}">More Filtering</a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{url('/project.my_favorites')}}">Favorites</a>
+        </li>
     </ul>
     @endsection
 @endif
@@ -97,10 +100,10 @@
                     </div>
                 </div>
                 <label class="fieldlabels">This workspace is for ___________ . *</label>
-                <select type="text" name="option_project_or_thesis" class="selectpicker my-select" data-width="100%" aria-label="Default select example">
+                <select type="text" name="option_project_or_thesis" class="selectpicker my-select" data-width="100%" aria-label="Default select example" required>
                     <option disabled selected>Choose between thesis and project.</option>
-                    <option value="thesis">Thesis</option>
-                    <option value="project">Project</option>
+                    <option value="Thesis">Thesis</option>
+                    <option value="Project">Project</option>
                 </select>
 
     <br><br>
@@ -118,7 +121,7 @@
 </div><br>
 
 
-            <label class="fieldlabels">Is this a personal work/academic work/contest work?*</label>
+            <label class="fieldlabels">Is this a personal work/academic work/contest work?</label>
             <select type="text" name="option_workspace_type" class="selectpicker my-selec" onchange="active_field(this.value)" data-width="100%" aria-label="Default select example">
                 <option disabled selected>Choose your answer.</option>
                 <option value="personal">Personal</option>
@@ -206,13 +209,13 @@
                 <br>
 
                 <div id="project-suprervisor">
-                <label class="fieldlabels">Add supervisor </label>
-                <select id="suprervisors" name="supervisor_id" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" >
+                <label class="fieldlabels">Add supervisor *</label>
+                <select id="suprervisors" name="supervisor_id" class="selectpicker my-select" multiple data-selected-text-format="count > 3" data-live-search="true" data-width="100%" required>
 
                     @foreach($all_users as $row)
-                    @if(Auth::user()->id!=$row->id)
-                        <option value="{{ $row->id }}">{{ $row->name }}</option>
-                    @endif
+                        @if(Auth::user()->id!=$row->id)
+                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                        @endif
                     @endforeach
 
                 </select>

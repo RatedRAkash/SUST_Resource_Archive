@@ -53,87 +53,105 @@
 
 <main id="main">
 
-    <!-- ======= Services Section ======= -->
-    <section class="services">
+    <!-- ======= Blog Section ======= -->
+    <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
         <div class="container">
 
             <div class="row">
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                    <div class="icon-box icon-box-pink">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint
-                            occaecati cupiditate non provident</p>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box icon-box-cyan">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu
-                            fugiat nulla pariatur</p>
-                    </div>
-                </div>
+                <div class="col-lg-8 entries">
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box icon-box-green">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                            deserunt
-                            mollit anim id est laborum</p>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box icon-box-blue">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
-                    </div>
-                </div>
 
-            </div>
 
-        </div>
-    </section><!-- End Services Section -->
+                <!-- ======= Category Details Section ======= -->
+                    <section class="service-details">
+
+                        <div class="container">
+
+                        <div class="row">
+
+
+                        @foreach ($categories as $row)
+
+                        <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="{{ URL::to($row->image) }}" alt="...">
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="{{url('categories.show.'.$row->id)}}">{{ $row->category_name }}</a></h5>
+                                    <p class="card-text">{{ $row->category_description }}</p>
+                                    <div class="read-more"><a href="{{url('categories.show.'.$row->id)}}"><i class="icofont-arrow-right"></i> Read More</a></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    @endforeach
+
+                    </section><!-- End Category Details Section -->
+
+                </div><!-- End blog entries list -->
+
+        </div><!-- End container -->
+
+    </section><!-- End Category Section -->
+
 
     <!-- ======= Why Us Section ======= -->
     <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
-        <div class="container">
+        <!-- ======= Blog Section ======= -->
+        <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+            <div class="container">>
+            @foreach($projects as $row)
+                <br>
+                <div class="row">
 
-            <div class="row">
-                <div class="col-lg-6 video-box">
-                    <img src="assets/img/why-us.jpg" class="img-fluid" alt="">
-                    <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4"
-                        data-vbtype="video" data-autoplay="true"></a>
+                    <div class="col-lg-8 entries">
+
+                        <article class="entry">
+
+                            <div class="entry-img">
+                                <img src="{{ URL::to($row->image) }}" alt="" class="img-fluid">
+                            </div>
+
+                            <h2 class="entry-title">
+                                <a href="{{url('projects.show.'.$row->id)}}">{{ $row->project_name }}</a>
+                            </h2>
+
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="icofont-user"></i> <a
+                                            href="blog-single.html">{{ $row->user->name }}</a></li>
+                                    <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
+                                            href=""><time datetime="2020-01-01">{{ $row->created_at }}</time></a></li>
+                                    <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a
+                                            href="">{{ $row->commentsection->count() }}  Comments</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="entry-content">
+                                <p>
+                                {!!$row->project_description!!}
+                                </p>
+                                <div class="read-more">
+                                    <a href="{{url('projects.show.'.$row->id)}}">Read More</a>
+                                </div>
+                            </div>
+
+                        </article><!-- End blog entry -->
+
+                    </div><!-- End blog entries list -->
+
                 </div>
-
-                <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
-
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint
-                            occaecati cupiditate non provident</p>
-                    </div>
-
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-gift"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
-                    </div>
-
-                </div>
+                @endforeach
             </div>
 
-        </div>
+        </section><!-- End Blog Section -->
+
     </section><!-- End Why Us Section -->
 
     <!-- ======= Features Section ======= -->

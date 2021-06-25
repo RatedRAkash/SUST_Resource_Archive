@@ -28,6 +28,8 @@ class CreateProjectsTable extends Migration
             $table->string('image')->nullable();
 
             $table->integer('project_access_table_id')->nullable();
+            $table->integer('partner_id')->nullable();
+            $table->integer('supervisor_id')->nullable();
 
             $table->timestamps();
         });

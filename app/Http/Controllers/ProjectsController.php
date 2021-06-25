@@ -12,6 +12,7 @@ use App\Models\Document;
 use App\Models\CommentSection;
 use App\Models\ProjectRequest;
 use App\Models\UserProfile;
+use App\Models\Favorite;
 use Auth;
 
 class ProjectsController extends Controller
@@ -25,8 +26,11 @@ class ProjectsController extends Controller
 
         $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
 
+        $favorites=Favorite::where('user_id','=',auth()->user()->id)
+                                            ->get();//LIST return kore... tai "0"th element access korar jonno [0] dibo
+
         //return response()->json($project);
-        return view('projects.all_project',compact('projects','categories','project_latest'));
+        return view('projects.all_project',compact('projects','categories','project_latest','favorites'));
     }
 
 
@@ -72,7 +76,6 @@ class ProjectsController extends Controller
 
         $data->save();
 
-
         //ACCESS To Partner & Supervisor
         if($request->partner_id)
         {
@@ -82,6 +85,8 @@ class ProjectsController extends Controller
             $project_request->request_user_id=$request->partner_id;
             $project_request->access_code=1;
             $project_request->save();
+
+            $data->partner_id=$request->partner_id;
         }
 
 
@@ -93,8 +98,11 @@ class ProjectsController extends Controller
             $project_request->request_user_id=$request->supervisor_id;
             $project_request->access_code=1;
             $project_request->save();
+
+            $data->supervisor_id=$request->supervisor_id;
         }
 
+        $data->save();
 
         //END ACCESS
 
@@ -271,6 +279,18 @@ class ProjectsController extends Controller
             }
         }
 
+        $link_to_dataset_url = $request->link_to_dataset;
+        if($link_to_dataset_url)
+        {
+            $data->link_to_dataset=$link_to_dataset_url;
+        }
+
+        else
+        {
+            $data->link_to_dataset=NULL;
+        }
+
+
         $data->save();
 
         //return response()->json($data);
@@ -426,10 +446,79 @@ class ProjectsController extends Controller
 
         $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
 
-        $projects=Project::paginate(5);//LIST return kore... tai "0"th element access korar jonno [0] dibo
+        $projects=Project::all();//LIST return kore... tai "0"th element access korar jonno [0] dibo
 
 
         return view('projects/more_filter_all_project',compact('projects','categories','project_latest'));
+    }
+
+
+
+
+
+    //PROJECT FAVORITES
+    public function store_project_favorite(Request $request,$id)
+    {
+        $project=Project::findorfail($id);
+        $user=User::findorfail(auth()->user()->id);
+
+        $favorite=Favorite::where('user_id','=',$user->id)
+                                        ->where('project_id','=',$project->id)
+                                        ->get();
+
+        if($favorite!='[]')
+        {
+            $favorite=$favorite[0];
+            $favorite->delete();
+            // if($favorite->flag_favorite==0)
+            // {
+            //     $favorite->flag_favorite=1;
+            // }
+
+            // else
+            // {
+            //     $favorite->flag_favorite=0;
+            // }
+
+            // $favorite->save();
+        }
+
+        else
+        {
+            $favorite=new Favorite;
+            $favorite->project_id=$id;
+            $favorite->user_id=auth()->user()->id;
+            $favorite->flag_favorite=1;
+
+            $favorite->save();
+        }
+
+        //return response()->json($data);
+        return Redirect('/projects');
+    }
+
+
+    //My FAVORITE PROJECTS
+    public function show_the_user_project_favorites()
+    {
+        $id=auth()->user()->id;
+        $user=User::findorfail($id);
+
+        $categories=Category::all();
+
+        $project_latest = Project::orderBy('id', 'desc')->take(7)->get();
+
+        $favorites=Favorite::where('user_id','=',$user->id)->get();
+
+        $projects = array();
+
+        foreach($favorites as $favorite)
+        {
+            $project=Project::where('id','=',$favorite->project_id)->get();
+            array_push($projects, $project[0]);
+        }
+
+        return view('projects/my_favorite_project',compact('projects','categories','project_latest'));
     }
 
 }
