@@ -64,6 +64,9 @@ Route::get('/projects.more_filter.search', 'ProjectsController@search_more_filte
 Route::get('/projects.more_filter.search_side_bar', 'ProjectsController@search_side_bar_more_filter_projects');
 Route::get('/projects.more_filter.order_by={key}', 'ProjectsController@order_by_more_filter_projects');
 
+//PROJECT GIVE RATING
+Route::post('/projects.project_rating.{id}', 'ProjectsController@store_project_rating');
+
 
 
 //PROJECT_FAVORITES

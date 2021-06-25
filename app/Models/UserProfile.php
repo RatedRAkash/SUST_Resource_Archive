@@ -11,4 +11,9 @@ class UserProfile extends Model
     {
         return $this->hasOne('App\User');
     }
+
+    public function commentsection()
+    {
+        return $this->hasMany('App\Models\CommentSection','id', 'user_id');
+    }
 }

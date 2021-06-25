@@ -326,7 +326,7 @@
                                 <div class="be-comment">
                                     <div class="be-img-comment">
                                         <a href="blog-detail-2.html">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="be-ava-comment">
+                                            <img src="{{$comment->user_profile->image}}" alt="" class="be-ava-comment">
                                         </a>
                                     </div>
                                     <div class="be-comment-content">
@@ -375,7 +375,82 @@
                             </div>
                         </div>
                         <!-- COMMENT SECTION END -->
+                        <div class="card text-dark bg-light mb-3" id="section-6">
+                        <style>
+                            .rating {
+                                display: flex;
+                                flex-direction: row-reverse;
+                                justify-content: center
+                            }
 
+                            .rating>input {
+                                display: none
+                            }
+
+                            .rating>label {
+                                position: relative;
+                                width: 1em;
+                                font-size: 3vw;
+                                color: #FFD600;
+                                cursor: pointer
+                            }
+
+                            .rating>label::before {
+                                content: "\2605";
+                                position: absolute;
+                                opacity: 0
+                            }
+
+                            .rating>label:hover:before,
+                            .rating>label:hover~label:before {
+                                opacity: 1 !important
+                            }
+
+                            .rating>input:checked~label:before {
+                                opacity: 1
+                            }
+
+                            .rating:hover>input:checked~label:before {
+                                opacity: 0.4
+                            }
+
+                            .Rating_h1{
+                                text-align: center
+                            }
+
+                            .Rating_h1 {
+                                margin-top: 50px
+                            }
+
+                            @media only screen and (max-width: 600px) {
+                                .Rating_h1 {
+                                    font-size: 3px
+                                }
+                            }
+                        </style>
+
+                            @if(!Auth::guest())
+                                @if(@isset($project_rating))
+                                    @if($project_rating=='[]')
+                                    <h1 class="Rating_h1">Give Rating </h1>
+                                    <form action="{{url('projects.project_rating.'.$project->id)}}" method="post" enctype="multipart/form-data" id="msform" class="form-block">
+                                        @csrf
+                                            <div class="row">
+                                                <div class="rating">
+                                                    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                                    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                                    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                                    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                                    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary" style="font-size: 0.8em">Submit</button>
+                                            </div>
+                                    </form>
+                                    @endif
+                                @endif
+                            @endif
+
+                        </div>
 
 
                     </div>

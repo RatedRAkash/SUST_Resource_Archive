@@ -245,6 +245,7 @@
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="{{URL::to('/projects.more_filter.order_by='.'project_name')}}">Name</a></li>
                     <li><a href="{{URL::to('/projects.more_filter.order_by='.'category_id')}}">Category Name</a></li>
+                    <li><a href="{{URL::to('/projects.more_filter.order_by='.'average_rating')}}">Rating</a></li>
                     <li><a href="{{URL::to('/projects.more_filter.order_by='.'updated_at')}}">Updated At</a></li>
                     <li><a href="{{URL::to('/projects.more_filter.order_by='.'created_at')}}">Created At</a></li>
                   </ul>
@@ -281,7 +282,32 @@
                   </td>
 
                   <td class="rate text-right">
-                      <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
+                    @if($row->average_rating==0)
+                        <span>
+                        <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+                        </span>
+                    @elseif($row->average_rating==1)
+                        <span>
+                        <i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+                        </span>
+                    @elseif($row->average_rating==2)
+                        <span>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+                        </span>
+                    @elseif($row->average_rating==3)
+                        <span>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+                        </span>
+                    @elseif($row->average_rating==4)
+                        <span>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+                        </span>
+                    @else
+                        <span>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        </span>
+                    @endif
+                    <!--<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>-->
                     </td>
                 </tr>
                 </a>

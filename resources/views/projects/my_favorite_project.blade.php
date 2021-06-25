@@ -68,6 +68,40 @@
                             <p>
                             {!!$row->project_description!!}
                             </p>
+                                @php
+                                    $flag = 0
+                                @endphp
+
+                                @if(!Auth::guest())
+                                    @if(Auth::user()->id != $row->user_id)
+                                        @if(@isset($favorites))
+                                            @foreach($favorites as $favorite)
+                                                @if($favorite->project_id==$row->id)
+                                                @php
+                                                    $flag = 1
+                                                @endphp
+                                                <div class="read-more">
+                                                    <form action="{{url('projects.project_favorite.'.$row->id)}}" method="post" enctype="multipart/form-data" name="fav_project_form" id="fav_project_form">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-danger">Remove From Favorites</button>
+                                                    </form>
+                                                </div>
+                                                <br>
+                                                @endif
+                                            @endforeach
+
+                                            @if($flag==0)
+                                                <div class="read-more">
+                                                    <form action="{{url('projects.project_favorite.'.$row->id)}}" method="post" enctype="multipart/form-data" name="fav_project_form" id="fav_project_form">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-success">Add to Favorites</button>
+                                                    </form>
+                                                </div>
+                                                <br>
+                                            @endif
+                                        @endif
+                                    @endif
+                                @endif
                             <div class="read-more">
                                 <a href="{{url('projects.show.'.$row->id)}}">Read More</a>
                             </div>

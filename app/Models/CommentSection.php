@@ -13,6 +13,11 @@ class CommentSection extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id', 'id');
+    }
+
+    public function user_profile()
+    {
+        return $this->belongsTo(UserProfile::class,'user_id', 'id');
     }
 }

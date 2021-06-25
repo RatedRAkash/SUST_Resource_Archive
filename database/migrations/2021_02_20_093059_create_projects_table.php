@@ -31,6 +31,8 @@ class CreateProjectsTable extends Migration
             $table->integer('partner_id')->nullable();
             $table->integer('supervisor_id')->nullable();
 
+            $table->integer('average_rating')->nullable();
+
             $table->timestamps();
         });
     }

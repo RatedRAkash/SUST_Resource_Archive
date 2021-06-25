@@ -94,7 +94,7 @@
           @endif
 
           @else
-          <li class="drop-down"><a id="users" href="{{url('/users_profile.show.'.Auth::user()->id)}}">{{ Auth::user()->name }}</a>
+          <li class="drop-down"><a id="users" href="{{url('/users_profile.show.'.Auth::user()->id)}}">{{ Auth::user()->username }}</a>
 
           <ul>
                   <li><a href="{{url('/users_profile.show.'.Auth::user()->id)}}">My Profile</a></li>

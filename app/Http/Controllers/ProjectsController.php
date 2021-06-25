@@ -13,6 +13,7 @@ use App\Models\CommentSection;
 use App\Models\ProjectRequest;
 use App\Models\UserProfile;
 use App\Models\Favorite;
+use App\Models\Rating;
 use Auth;
 
 class ProjectsController extends Controller
@@ -63,6 +64,7 @@ class ProjectsController extends Controller
 
         $data->project_or_thesis=$request->option_project_or_thesis;
         $data->workspace_type=$request->option_workspace_type;
+        $data->average_rating=0;
 
 
         $image =$request->file('image');
@@ -158,8 +160,17 @@ class ProjectsController extends Controller
         }
 
 
+        $project_rating=Rating::where('user_id','=',$current_user_id)
+                                ->where('project_id','=',$id)
+                                ->get();
 
-        return view('projects.view_project',compact('project','comments', 'project_request'));
+        if($project_rating != '[]')
+        {
+            $project_rating=$project_rating[0];
+        }
+
+
+        return view('projects.view_project',compact('project','comments', 'project_request','project_rating'));
 
     }
 
@@ -339,6 +350,7 @@ class ProjectsController extends Controller
             return view('pages.not_authorized');
         }
     }
+
 
 
 
@@ -581,7 +593,52 @@ class ProjectsController extends Controller
             array_push($projects, $project[0]);
         }
 
-        return view('projects/my_favorite_project',compact('projects','categories','project_latest'));
+        return view('projects/my_favorite_project',compact('projects','categories','project_latest','favorites'));
+    }
+
+
+    //PROJECT RATING STORE
+    public function store_project_rating(Request $request,$id)
+    {
+        $project=Project::findorfail($id);
+
+        $project_rating=Rating::where('user_id','=',auth()->user()->id)
+                                ->where('project_id','=',$id)
+                                ->get();
+        if($project_rating == '[]')
+        {
+            $project_rating=new Rating;
+            $project_rating->project_id=$id;
+            $project_rating->user_id=auth()->user()->id;
+            $project_rating->rating=$request->rating;
+            $project_rating->save();
+        }
+
+        else
+        {
+            $project_rating=$project_rating[0];
+            $project_rating->rating=$request->rating;
+            $project_rating->save();
+        }
+
+        //AVERAGE RATING CALCULATE
+        $project_rating=Rating::where('project_id','=',$id)
+                                ->get();
+
+        $coun=0;
+        $sum=0;
+        foreach($project_rating as $row)
+        {
+            $coun=$coun+1;
+            $sum=$sum+$row->rating;
+        }
+        // echo($sum/$coun);
+        // return;
+        $project->average_rating=(int)($sum/$coun);
+        $project->save();
+
+        //return response()->json($data);
+        return Redirect('/projects.show.'.$id);
     }
 
 }
