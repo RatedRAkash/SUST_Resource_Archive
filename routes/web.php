@@ -97,7 +97,7 @@ Route::get('/users_profile.search','UsersProfileController@search');//SEARCH Use
 
 
 
-
+Route::post('/send_message','PagesController@send_message');//SEARCH User
 
 
 
@@ -138,6 +138,8 @@ Route::get('/resources', function(){
 })->name('/resources');
 
 Route::get('/akash', 'PagesController@akash')->name('/akash');
+
+Route::get('/send_email', 'MailController@sendEmail')->name('/send_email');
 
 
 Route::get('/list', function() {

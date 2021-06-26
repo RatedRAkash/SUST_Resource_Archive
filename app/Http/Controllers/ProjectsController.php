@@ -16,6 +16,9 @@ use App\Models\Favorite;
 use App\Models\Rating;
 use Auth;
 
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
+
 class ProjectsController extends Controller
 {
 
@@ -315,7 +318,31 @@ class ProjectsController extends Controller
 
         //return response()->json($data);
         if($data){
+            $project=Project::findorfail($id);
+            $favorites=Favorite::where('project_id','=',$project->id)
+                                        ->get();
             //return Redirect()->back();
+            if($favorites!='[]')
+            {
+                foreach($favorites as $favorite)
+                {
+                    $user=User::where('id','=',$favorite->user_id)->get();
+                    $user=$user[0];
+
+                    $details = [
+                        'subject' => "A project from your favourite list updated",
+                        'title' => "A project from your favourite list updated",
+                        'body' => "We want to inform you that a project from your favourite list titled \n".$project->project_name."\nhas been updated.",
+                        'sent_to' => $user->name,
+                        'reciever_email' => $user->email,
+                        'sent_by' => "Admin",
+                        'sender_email' => "sust.techexpo@gmail.com",
+                        'link' => "http://localhost/sust_resource_archive_git/public/projects.show.".$project->id
+                    ];
+                    Mail::to($user->email)->send(new SendMail($details));
+                }
+            }
+
             return Redirect('/projects.show.'.$id);
         }
 

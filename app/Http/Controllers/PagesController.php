@@ -13,6 +13,9 @@ use App\Models\CommentSection;
 use App\Models\ProjectRequest;
 use App\Models\UserProfile;
 
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
+
 class PagesController extends Controller
 {
     public function index()
@@ -122,6 +125,22 @@ class PagesController extends Controller
         }
         //return $url;
         return view('akash',compact('url'));
+    }
+
+    public function send_message(Request $request){
+
+        $details = [
+            'subject' => $request->subject,
+            'title' => $request->subject,
+            'body' => $request->message,
+            'sent_to' => 'Admin',
+            'sent_by' => $request->name,
+            'sender_email' => $request->email,
+            'link' => "http://localhost/sust_resource_archive_git/public/"
+        ];
+        #return $details['subject'];
+        Mail::to("sust.techexpo@gmail.com")->send(new SendMail($details));
+        return Redirect()->back();
     }
 
 
