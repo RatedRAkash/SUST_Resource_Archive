@@ -12,13 +12,13 @@ It's a web project build by Laravel for the course CSE 446 : Web Technology. The
 
 - Ananta Akash Podder
   
- Reg No: 2016331099,
+  Reg No: 2016331099,
   
- Student of CSE, SUST
+  Student of CSE, SUST
   
- Email: anantaakash.podder@gmail.com
+  Email: anantaakash.podder@gmail.com
   
- Github: https://github.com/RatedRAkash
+  Github: https://github.com/RatedRAkash
 
 
 - MD. NAHID REZA SHOVO
@@ -35,12 +35,18 @@ It's a web project build by Laravel for the course CSE 446 : Web Technology. The
 Also thanks for guidance of:
 
 - Enamul Hassan
-Assistant Professor,
-Dept of CSE, SUST
+ 
+  Assistant Professor,
 
--Arnab Sen Sharma
-Lecturer
-Dept of CSE, SUST
+  Department of CSE, SUST
+
+
+
+- Arnab Sen Sharma
+
+  Lecturer
+
+  Department of CSE, SUST
 
 
 ## Motivation
