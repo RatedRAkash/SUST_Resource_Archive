@@ -325,13 +325,13 @@
                                 @foreach($comments as $comment)
                                 <div class="be-comment">
                                     <div class="be-img-comment">
-                                        <a href="blog-detail-2.html">
+                                        <a href="{{url('/users_profile.show.'.$comment->user->id)}}">
                                             <img src="{{$comment->user_profile->image}}" alt="" class="be-ava-comment">
                                         </a>
                                     </div>
                                     <div class="be-comment-content">
                                         <span class="be-comment-name">
-                                            <a href="blog-detail-2.html">{{$comment->user->name}}</a>
+                                            <a href="{{url('/users_profile.show.'.$comment->user->id)}}">{{$comment->user->name}}</a>
                                         </span>
                                         <span class="be-comment-time">
                                             <i class="fa fa-clock-o"></i>

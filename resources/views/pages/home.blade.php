@@ -3,8 +3,8 @@
 @section('content')
 
 <script type="text/javascript">
-    document.getElementById('header').className = "fixed-top header-transparent";
-    document.getElementById('home').className = "active";
+document.getElementById('header').className = "fixed-top header-transparent";
+document.getElementById('home').className = "active";
 </script>
 
 <!-- ======= Hero Section ======= -->
@@ -64,39 +64,44 @@
 
 
 
-                <!-- ======= Category Details Section ======= -->
+                    <!-- ======= Category Details Section ======= -->
                     <section class="service-details">
-
+                        <div class="section-title">
+                            <h2>Categories</h2>
+                        </div>
                         <div class="container">
 
-                        <div class="row">
+                            <div class="row">
 
 
-                        @foreach ($categories as $row)
+                                @foreach ($categories as $row)
 
-                        <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                                <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
 
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="{{ URL::to($row->image) }}" alt="...">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="{{ URL::to($row->image) }}" alt="...">
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a
+                                                    href="{{url('categories.show.'.$row->id)}}">{{ $row->category_name }}</a>
+                                            </h5>
+                                            <p class="card-text">{{ $row->category_description }}</p>
+                                            <div class="read-more"><a href="{{url('categories.show.'.$row->id)}}"><i
+                                                        class="icofont-arrow-right"></i> Read More</a></div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="{{url('categories.show.'.$row->id)}}">{{ $row->category_name }}</a></h5>
-                                    <p class="card-text">{{ $row->category_description }}</p>
-                                    <div class="read-more"><a href="{{url('categories.show.'.$row->id)}}"><i class="icofont-arrow-right"></i> Read More</a></div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    @endforeach
+                                @endforeach
 
                     </section><!-- End Category Details Section -->
 
                 </div><!-- End blog entries list -->
 
-        </div><!-- End container -->
+            </div><!-- End container -->
 
     </section><!-- End Category Section -->
 
@@ -105,8 +110,12 @@
     <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
         <!-- ======= Blog Section ======= -->
         <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-            <div class="container">>
-            @foreach($projects as $row)
+            <div class="container">
+                <br>
+                <div class="section-title">
+                    <h2>Projects</h2>
+                </div>
+                @foreach($projects as $row)
                 <br>
                 <div class="row">
 
@@ -129,13 +138,13 @@
                                     <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
                                             href=""><time datetime="2020-01-01">{{ $row->created_at }}</time></a></li>
                                     <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a
-                                            href="">{{ $row->commentsection->count() }}  Comments</a></li>
+                                            href="">{{ $row->commentsection->count() }} Comments</a></li>
                                 </ul>
                             </div>
 
                             <div class="entry-content">
                                 <p>
-                                {!!$row->project_description!!}
+                                    {!!$row->project_description!!}
                                 </p>
                                 <div class="read-more">
                                     <a href="{{url('projects.show.'.$row->id)}}">Read More</a>
@@ -166,89 +175,53 @@
                     in iste officiis commodi quidem hic quas.</p>
             </div>
 
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-5">
-                    <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="assets/img/about.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0">
+                        <h3>SUST CSE RESOURCE ARCHIEVE</h3>
+                        <p class="font-italic">
+                            The features we provides:
+                        </p>
+                        <ul>
+                            <li><i class="icofont-check-circled"></i> User register and login</li>
+                            <li><i class="icofont-check-circled"></i> Google captcha for preventing unauthorized
+                                sign-up.</li>
+                            <li><i class="icofont-check-circled"></i> Beatiful user profile where users can upload
+                                profile photos, add websites and edit informatin.
+                                There is also option to view their own and favourite projects.</li>
+                            <li><i class="icofont-check-circled"></i> Option to manually add project categories and view
+                                the projects of each category.</li>
+                            <li><i class="icofont-check-circled"></i> User can create project workspace by form to store
+                                their projects.
+                                They can also add partner and supervisor.</li>
+                            <li><i class="icofont-check-circled"></i> CK-Editor is implemented to add more features in
+                                description section.</li>
+                            <li><i class="icofont-check-circled"></i> User can upload PDF, Presentation slide and source
+                                code. Slide can be presented in google slide. Files are uploaded in google drive.</li>
+                            <li><i class="icofont-check-circled"></i> Owner can edit their project. users can request
+                                for editing access.</li>
+                            <li><i class="icofont-check-circled"></i> A user can add a project to the favourite list.
+                                Any update on the project will be notified to the users via email.</li>
+                            <li><i class="icofont-check-circled"></i> A user can rate or comment on any project.</li>
+                            <li><i class="icofont-check-circled"></i> From the mail, the user can automatically visit
+                                the site.</li>
+                            <li><i class="icofont-check-circled"></i> There are features for filtering and sorting the
+                                projects.</li>
+                            <li><i class="icofont-check-circled"></i> For any query users can contact from the contact
+                                us section.</li>
+
+
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-7 pt-4">
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                    <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et
-                        dolore
-                        magna aliqua.
-                    </p>
-                    <ul>
-                        <li><i class="icofont-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                        <li><i class="icofont-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
-                        </li>
-                    </ul>
-                </div>
+
             </div>
 
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-5 order-1 order-md-2">
-                    <img src="assets/img/features-2.svg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 pt-5 order-2 order-md-1">
-                    <h3>Corporis temporibus maiores provident</h3>
-                    <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et
-                        dolore
-                        magna aliqua.
-                    </p>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                        in
-                        voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
-                </div>
-            </div>
 
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-5">
-                    <img src="assets/img/features-3.svg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 pt-5">
-                    <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
-                    <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit
-                        aut
-                        quia voluptatem hic voluptas dolor doloremque.</p>
-                    <ul>
-                        <li><i class="icofont-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                        <li><i class="icofont-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
-                        </li>
-                        <li><i class="icofont-check"></i> Facilis ut et voluptatem aperiam. Autem soluta ad fugiat.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-5 order-1 order-md-2">
-                    <img src="assets/img/features-4.svg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 pt-5 order-2 order-md-1">
-                    <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
-                    <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et
-                        dolore
-                        magna aliqua.
-                    </p>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                        in
-                        voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
-                </div>
-            </div>
 
         </div>
     </section><!-- End Features Section -->

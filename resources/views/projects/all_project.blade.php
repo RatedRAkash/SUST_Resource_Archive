@@ -56,11 +56,11 @@
                         <div class="entry-meta">
                             <ul>
                                 <li class="d-flex align-items-center"><i class="icofont-user"></i> <a
-                                        href="blog-single.html">{{ $row->user->name }}</a></li>
+                                        href="{{url('/users_profile.show.'.$row->user->id)}}">{{ $row->user->name }}</a></li>
                                 <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
-                                        href="blog-single.html"><time datetime="2020-01-01">{{ $row->created_at }}</time></a></li>
+                                        href="{{url('projects.show.'.$row->id)}}"><time datetime="2020-01-01">{{ $row->created_at }}</time></a></li>
                                 <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a
-                                        href="blog-single.html">{{ $row->commentsection->count() }}  Comments</a></li>
+                                        href="{{url('projects.show.'.$row->id)}}">{{ $row->commentsection->count() }}  Comments</a></li>
                             </ul>
                         </div>
 
@@ -162,7 +162,7 @@
                         @foreach($project_latest as $project)
                             <div class="post-item clearfix">
                                 <img src="{{ URL::to($project->image) }}" alt="">
-                                <h4><a href="blog-single.html">{{$project->name}}</a></h4>
+                                <h4><a href="{{url('projects.show.'.$project->id)}}">{{$project->name}}</a></h4>
                                 <time datetime="2020-01-01">{{$project->updated_at}}</time>
                             </div>
                         @endforeach

@@ -88,17 +88,15 @@ class ProjectsController extends Controller
             $data->image="default_images/project_no_image.png";
         }
 
-        $data->save();
-
         //ACCESS To Partner & Supervisor
         if($request->partner_id)
         {
-            $project_request=new ProjectRequest;
-            $project_request->project_id=$data->id;
-            $project_request->owner_id=auth()->user()->id;;
-            $project_request->request_user_id=$request->partner_id;
-            $project_request->access_code=1;
-            $project_request->save();
+            // $project_request=new ProjectRequest;
+            // $project_request->project_id=$data->id;
+            // $project_request->owner_id=auth()->user()->id;;
+            // $project_request->request_user_id=$request->partner_id;
+            // $project_request->access_code=1;
+            // $project_request->save();
 
             $data->partner_id=$request->partner_id;
         }
@@ -106,12 +104,12 @@ class ProjectsController extends Controller
 
         if($request->supervisor_id)
         {
-            $project_request=new ProjectRequest;
-            $project_request->project_id=$data->id;
-            $project_request->owner_id=auth()->user()->id;;
-            $project_request->request_user_id=$request->supervisor_id;
-            $project_request->access_code=1;
-            $project_request->save();
+            // $project_request=new ProjectRequest;
+            // $project_request->project_id=$data->id;
+            // $project_request->owner_id=auth()->user()->id;;
+            // $project_request->request_user_id=$request->supervisor_id;
+            // $project_request->access_code=1;
+            // $project_request->save();
 
             $data->supervisor_id=$request->supervisor_id;
         }
@@ -246,7 +244,7 @@ class ProjectsController extends Controller
         }
         else
         {
-            $data->image="default_images/project_no_image.png";
+            //$data->image="default_images/project_no_image.png";
         }
 
 
@@ -463,8 +461,9 @@ class ProjectsController extends Controller
                                          ->where('request_user_id','=',$request_user_id)
                                          ->get();//LIST return kore... tai "0"th element access korar jonno [0] dibo
 
-        $project_request[0]->access_code=$access_code;
-        $project_request[0]->save();
+        $project_request=$project_request[0];
+        $project_request->access_code=$access_code;
+        $project_request->save();
 
         return Redirect('/project_requests');
 
@@ -603,8 +602,7 @@ class ProjectsController extends Controller
     //My FAVORITE PROJECTS
     public function show_the_user_project_favorites()
     {
-        $id=auth()->user()->id;
-        $user=User::findorfail($id);
+        $user=User::findorfail(auth()->user()->id);
 
         $categories=Category::all();
 

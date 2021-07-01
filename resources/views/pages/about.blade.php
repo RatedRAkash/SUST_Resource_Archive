@@ -33,28 +33,29 @@
                     <img src="assets/img/about.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0">
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                    <h3>SUST CSE RESOURCE ARCHIEVE</h3>
                     <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore
-                        magna aliqua.
+                    The features we provides:
                     </p>
                     <ul>
-                        <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat.</li>
-                        <li><i class="icofont-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate
-                            velit.</li>
-                        <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda
-                            mastiro dolore eu fugiat nulla pariatur.</li>
+                        <li><i class="icofont-check-circled"></i> User register and login</li>
+                        <li><i class="icofont-check-circled"></i> Google captcha for preventing unauthorized sign-up.</li>
+                        <li><i class="icofont-check-circled"></i> Beatiful user profile where users can upload profile photos, add websites and edit informatin.
+                        There is also option to view their own and favourite projects.</li>
+                        <li><i class="icofont-check-circled"></i> Option to manually add project categories and view the projects of each category.</li>
+                        <li><i class="icofont-check-circled"></i> User can create project workspace by form to store their projects.
+                        They can also add partner and supervisor.</li>
+                        <li><i class="icofont-check-circled"></i>  CK-Editor is implemented to add more features in description section.</li>
+                        <li><i class="icofont-check-circled"></i> User can upload PDF, Presentation slide and source code. Slide can be presented in google slide. Files are uploaded in google drive.</li>
+                        <li><i class="icofont-check-circled"></i> Owner can edit their project. users can request for editing access.</li>
+                        <li><i class="icofont-check-circled"></i> A user can add a project to the favourite list. Any update on the project will be notified to the users via email.</li>
+                        <li><i class="icofont-check-circled"></i> A user can rate or comment on any project.</li>
+                        <li><i class="icofont-check-circled"></i> From the mail, the user can automatically visit the site.</li>
+                        <li><i class="icofont-check-circled"></i> There are features for filtering and sorting the projects.</li>
+                        <li><i class="icofont-check-circled"></i> For any query users can contact from the contact us section.</li>
+
+
                     </ul>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                        in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
                 </div>
             </div>
 
@@ -62,7 +63,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Facts Section ======= -->
-    <section class="facts section-bg" data-aos="fade-up">
+    <!--<section class="facts section-bg" data-aos="fade-up">
         <div class="container">
 
             <div class="row counters">
@@ -90,10 +91,10 @@
             </div>
 
         </div>
-    </section><!-- End Facts Section -->
+    </section>--><!-- End Facts Section -->
 
     <!-- ======= Our Skills Section ======= -->
-    <section class="skills" data-aos="fade-up">
+    <!--<section class="skills" data-aos="fade-up">
         <div class="container">
 
             <div class="section-title">
@@ -136,10 +137,10 @@
             </div>
 
         </div>
-    </section><!-- End Our Skills Section -->
+    </section>--><!-- End Our Skills Section -->
 
     <!-- ======= Tetstimonials Section ======= -->
-    <section class="testimonials" data-aos="fade-up">
+    <!--<section class="testimonials" data-aos="fade-up">
         <div class="container">
 
             <div class="section-title">
@@ -216,7 +217,7 @@
             </div>
 
         </div>
-    </section><!-- End Ttstimonials Section -->
+    </section>--><!-- End Ttstimonials Section -->
 
 </main><!-- End #main -->
 
