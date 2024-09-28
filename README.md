@@ -1,6 +1,6 @@
 ### CSE 446 : Web Technologies
 
-# SUST CSE RESOURCE ARCHIEVE
+# SUST CSE RESOURCE ARCHIVE
 
 
 [![N|Solid](https://github.com/CSE-446-2016/group_47/blob/main/Capture.PNG)]()
