@@ -19,7 +19,7 @@ It's a web project build by Laravel for the course CSE 446 : Web Technology. The
   
   Email: anantaakash.podder@gmail.com
   
-  Github: https://github.com/RatedRAkash
+  Github: https://github.com/akash-podder
   
   
 
